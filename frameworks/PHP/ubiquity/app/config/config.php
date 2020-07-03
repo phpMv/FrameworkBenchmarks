@@ -12,7 +12,7 @@ return array(
 			"options" => [
 				\PDO::ATTR_PERSISTENT => true
 			],
-			"cache" => false
+			"cache" => '\\Ubiquity\\cache\\database\\TableCache'
 		],
 		'pgsql' => [
 			"wrapper" => "\\Ubiquity\\db\\providers\\pdo\\PDOWrapper",

@@ -19,7 +19,7 @@ class Db extends \Ubiquity\controllers\Controller {
 	public function index() {
 		echo \json_encode((SDAO::getById(World::class, [
 			'id' => \mt_rand(1, 10000)
-		]))->_rest);
+		], false))->_rest);
 	}
 
 	public function query($queries = 1) {
@@ -28,7 +28,18 @@ class Db extends \Ubiquity\controllers\Controller {
 		for ($i = 0; $i < $queries; ++ $i) {
 			$worlds[] = (SDAO::getById(World::class, [
 				'id' => \mt_rand(1, 10000)
-			]))->_rest;
+			], false))->_rest;
+		}
+		echo \json_encode($worlds);
+	}
+
+	public function cachedQuery($queries = 1) {
+		$worlds = [];
+		$queries = \min(\max($queries, 1), 500);
+		for ($i = 0; $i < $queries; ++ $i) {
+			$worlds[] = (SDAO::getById(World::class, [
+				'id' => \mt_rand(1, 10000)
+			], false, true))->_rest;
 		}
 		echo \json_encode($worlds);
 	}
@@ -41,7 +52,7 @@ class Db extends \Ubiquity\controllers\Controller {
 		foreach ($ids as $id) {
 			$world = SDAO::getById(World::class, [
 				'id' => $id
-			]);
+			], false);
 			$world->randomNumber = \mt_rand(1, 10000);
 			SDAO::toUpdate($world);
 			$worlds[] = $world->_rest;
