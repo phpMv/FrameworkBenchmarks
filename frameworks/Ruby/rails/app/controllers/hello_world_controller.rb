@@ -42,7 +42,11 @@ class HelloWorldController < ApplicationController
       # get a random row from the database, which we know has 10000
       # rows with ids 1 - 10000
       world = World.select(:id, :randomNumber).find(id)
-      world.update_attribute(:randomNumber, Random.rand(1..10000))
+      loop do
+        rn = Random.rand(1..10000)
+        break if rn != world.randomNumber
+      end
+      world.update_attribute(:randomNumber, rn)
       world
     end
 
