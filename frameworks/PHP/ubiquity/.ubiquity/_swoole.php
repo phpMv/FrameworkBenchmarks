@@ -15,6 +15,6 @@ $swooleServer = new \Ubiquity\servers\swoole\SwooleServer();
 $swooleServer->init($config, __DIR__);
 require ROOT . 'config/swooleServices.php';
 $swooleServer->run($sConfig['host'], $sConfig['port'], [
-	'worker_num' => \swoole_cpu_num(),
+	'worker_num' => \swoole_cpu_num() * 2,
 	'reactor_num' => \swoole_cpu_num()
 ]);
