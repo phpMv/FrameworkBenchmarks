@@ -37,7 +37,7 @@ class HelloWorldController < ApplicationController
     queries = 1 if queries < 1
     queries = 500 if queries > 500
 
-    numbers = (1..10000).to_a.sample(queries)
+    numbers = (1..10000).to_a.sample(queries).sort
     worlds = numbers.map do |id|
       # get a random row from the database, which we know has 10000
       # rows with ids 1 - 10000
