@@ -27,7 +27,7 @@ class DbPg extends \Ubiquity\controllers\Controller {
 	public function query($queries = 1) {
 		$worlds = [];
 		$queries = \min(\max($queries, 1), 500);
-		$numbers=\array_rand($this->numbers,$queries);
+		$numbers=$this->getNumbers($queries);
 		foreach ($numbers as $n) {
 					$worlds[] = (DAO::executePrepared('world', [
 						'id' => $this->numbers[$n]
@@ -39,7 +39,7 @@ class DbPg extends \Ubiquity\controllers\Controller {
 	public function update($queries = 1) {
 		$worlds = [];
 		$queries = \min(\max($queries, 1), 500);
-		$numbers=\array_rand($this->numbers,$queries);
+		$numbers=$this->getNumbers($queries);
 		foreach ($numbers as $n) {
 			$world = DAO::executePrepared('world', [
 				'id' => $this->numbers[$n]
@@ -50,5 +50,13 @@ class DbPg extends \Ubiquity\controllers\Controller {
 		}
 		DAO::flushUpdates();
 		echo \json_encode($worlds);
+	}
+
+	protected function getNumbers($queries){
+		if($queries==1){
+			return mt_rand(0,9999);
+		}else{
+			return \array_rand($this->numbers,$queries);
+		}
 	}
 }
