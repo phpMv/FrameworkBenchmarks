@@ -3,7 +3,7 @@ namespace controllers;
 
 use models\Fortune;
 
-class Fortunes_ extends \Ubiquity\controllers\SimpleCViewAsyncController {
+class Fortunes_ extends \Ubiquity\controllers\SimpleViewAsyncController {
 
 	public function initialize() {
 		\Ubiquity\utils\http\UResponse::setContentType('text/html', 'utf-8');
@@ -18,8 +18,8 @@ class Fortunes_ extends \Ubiquity\controllers\SimpleCViewAsyncController {
 		]);
 	}
 
-	private static function cmp(Fortune $a, Fortune $r):int{
-		return $a->message <=> $r->message;
+	private static function cmp(Fortune $l, Fortune $r):int{
+		return $l->message <=> $r->message;
 	}
 }
 
