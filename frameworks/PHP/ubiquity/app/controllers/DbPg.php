@@ -54,7 +54,7 @@ class DbPg extends \Ubiquity\controllers\Controller {
 
 	protected function getNumbers($queries){
 		if($queries==1){
-			return mt_rand(0,9999);
+			return [mt_rand(0,9999)];
 		}else{
 			return \array_rand($this->numbers,$queries);
 		}
