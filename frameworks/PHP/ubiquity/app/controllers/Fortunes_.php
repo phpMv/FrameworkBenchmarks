@@ -3,7 +3,7 @@ namespace controllers;
 
 use models\Fortune;
 
-class Fortunes_ extends \Ubiquity\controllers\SimpleViewController {
+class Fortunes_ extends \Ubiquity\controllers\SimpleViewAsyncController {
 
 	public function initialize() {
 		\Ubiquity\utils\http\UResponse::setContentType('text/html', 'utf-8');
