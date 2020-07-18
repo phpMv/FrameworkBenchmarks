@@ -7,8 +7,11 @@ use Ubiquity\orm\DAO;
  * Bench controller.
  */
 class DbPg extends \Ubiquity\controllers\Controller {
+	private $numbers;
 
-	public function __construct() {}
+	public function __construct() {
+		$this->numbers=\range(1,10000);
+	}
 
 	public function initialize() {
 		\Ubiquity\utils\http\UResponse::setContentType('application/json');
@@ -24,9 +27,10 @@ class DbPg extends \Ubiquity\controllers\Controller {
 	public function query($queries = 1) {
 		$worlds = [];
 		$queries = \min(\max($queries, 1), 500);
-		for ($i = 0; $i < $queries; ++ $i) {
-			$worlds[] = (DAO::executePrepared('world', [
-				'id' => \mt_rand(1, 10000)
+		$numbers=\array_rand($this->numbers,$queries);
+		foreach ($numbers as $rn) {
+					$worlds[] = (DAO::executePrepared('world', [
+				'id' => $rn
 			]))->_rest;
 		}
 		echo \json_encode($worlds);
@@ -35,9 +39,10 @@ class DbPg extends \Ubiquity\controllers\Controller {
 	public function update($queries = 1) {
 		$worlds = [];
 		$queries = \min(\max($queries, 1), 500);
-		for ($i = 0; $i < $queries; ++ $i) {
+		$numbers=\array_rand($this->numbers,$queries);
+		foreach ($numbers as $rn) {
 			$world = DAO::executePrepared('world', [
-				'id' => \mt_rand(1, 10000)
+				'id' => $rn
 			]);
 			$world->randomNumber = \mt_rand(1, 10000);
 			DAO::toUpdate($world);
