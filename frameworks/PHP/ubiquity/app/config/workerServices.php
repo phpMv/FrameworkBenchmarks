@@ -1,5 +1,4 @@
 <?php
-$numbers=\range(1, 10000);
 \Ubiquity\cache\CacheManager::startProd($config);
 \Ubiquity\orm\DAO::setModelsDatabases([
 	'models\\Fortune' => 'pgsql',
