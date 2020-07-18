@@ -15,4 +15,4 @@ $workerServer = new \Ubiquity\servers\workerman\WorkermanServer();
 $workerServer->init($config, __DIR__);
 $workerServer->setDefaultCount(4);
 require ROOT . 'config/workerServices.php';
-$workerServer->run($sConfig['host'], $sConfig['port'], $sConfig['socket'] ?? []);
+$workerServer->run($sConfig['host'], $sConfig['port'], $sConfig['options'] ?? []);
