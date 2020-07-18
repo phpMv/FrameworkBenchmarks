@@ -56,4 +56,9 @@ class Fortune {
 	public function getMessage() {
 		return $this->message;
 	}
+
+	public static function cmp($a, $r)
+	{
+		return $a->message <=> $r->message;
+	}
 }
