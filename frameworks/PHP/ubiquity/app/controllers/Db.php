@@ -3,7 +3,7 @@ namespace controllers;
 
 use Ubiquity\orm\SDAO;
 use models\World;
-use controllers\utils\DbTait;
+use controllers\utils\DbTrait;
 
 /**
  * Bench controller.

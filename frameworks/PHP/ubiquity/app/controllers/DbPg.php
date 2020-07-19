@@ -2,12 +2,13 @@
 namespace controllers;
 
 use Ubiquity\orm\DAO;
-use controllers\utils\DbTait;
+use controllers\utils\DbTrait;
 /**
  * Bench controller.
  */
 class DbPg extends \Ubiquity\controllers\Controller {
 	use DbTrait;
+
 	public function __construct() {
 	}
 
