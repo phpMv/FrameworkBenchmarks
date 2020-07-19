@@ -18,8 +18,8 @@ class Fortunes_ extends \Ubiquity\controllers\SimpleViewAsyncController {
 		]);
 	}
 
-	private static function cmp(Fortune $l, Fortune $r):int{
-		return $l->message <=> $r->message;
+	private static function cmp(Fortune $left, Fortune $right):int{
+		return $left->message <=> $right->message;
 	}
 }
 
