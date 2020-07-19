@@ -24,8 +24,8 @@ class Db extends \Ubiquity\controllers\Controller {
 
 	public function query($queries = 1) {
 		$worlds = [];
-		$queries = \min(\max($queries, 1), 500);
-		for ($i = 0; $i < $queries; ++ $i) {
+		$count=static::getCount($queries);
+		for ($i = 0; $i < $count; ++ $i) {
 			$worlds[] = (SDAO::getById(World::class, [
 				'id' => \mt_rand(1, 10000)
 			]))->_rest;
@@ -36,8 +36,8 @@ class Db extends \Ubiquity\controllers\Controller {
 	public function update($queries = 1) {
 		$worlds = [];
 
-		$queries = \min(\max($queries, 1), 500);
-		$ids = $this->getUniqueRandomNumbers($queries);
+		$count=static::getCount($queries);
+		$ids = $this->getUniqueRandomNumbers($count);
 		foreach ($ids as $id) {
 			$world = SDAO::getById(World::class, [
 				'id' => $id
@@ -49,6 +49,14 @@ class Db extends \Ubiquity\controllers\Controller {
 		SDAO::updateGroups($queries);
 
 		echo \json_encode($worlds);
+	}
+
+	protected static function getCount($queries){
+		$count=1;
+		if($queries>1){
+			if(($count =$queries)>500){$count=500;}
+		}
+		return $count;
 	}
 
 	private function getUniqueRandomNumbers($count) {
