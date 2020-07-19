@@ -13,14 +13,10 @@ class Fortunes extends \Ubiquity\controllers\SimpleViewController {
 	public function index() {
 		$fortunes = SDAO::getAll(Fortune::class);
 		$fortunes[] = new Fortune(0, 'Additional fortune added at request time.');
-		\usort($fortunes, 'self::cmp');
+		\usort($fortunes, 'services\\Benchmark::compareTo');
 		$this->loadView('Fortunes/index.php', [
 			'fortunes' => $fortunes
 		]);
-	}
-
-	private static function cmp(Fortune $l, Fortune $r):int{
-		return $l->message <=> $r->message;
 	}
 }
 

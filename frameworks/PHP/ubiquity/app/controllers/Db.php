@@ -3,6 +3,7 @@ namespace controllers;
 
 use Ubiquity\orm\SDAO;
 use models\World;
+use services\Benchmark;
 
 /**
  * Bench controller.
@@ -24,7 +25,7 @@ class Db extends \Ubiquity\controllers\Controller {
 
 	public function query($queries = 1) {
 		$worlds = [];
-		$count=static::getCount($queries);
+		$count=Benchmark::getCount($queries);
 		for ($i = 0; $i < $count; ++ $i) {
 			$worlds[] = (SDAO::getById(World::class, [
 				'id' => \mt_rand(1, 10000)
@@ -36,7 +37,7 @@ class Db extends \Ubiquity\controllers\Controller {
 	public function update($queries = 1) {
 		$worlds = [];
 
-		$count=static::getCount($queries);
+		$count=Benchmark::getCount($queries);
 		$ids = $this->getUniqueRandomNumbers($count);
 		foreach ($ids as $id) {
 			$world = SDAO::getById(World::class, [
@@ -51,13 +52,6 @@ class Db extends \Ubiquity\controllers\Controller {
 		echo \json_encode($worlds);
 	}
 
-	protected static function getCount($queries){
-		$count=1;
-		if($queries>1){
-			if(($count =$queries)>500){$count=500;}
-		}
-		return $count;
-	}
 
 	private function getUniqueRandomNumbers($count) {
 		$res = [];
