@@ -8,6 +8,14 @@ use Ubiquity\orm\DAO;
  */
 class SwooleDbAsync extends \Ubiquity\controllers\Controller {
 
+	protected static function getCount($queries){
+		$count=1;
+		if($queries>1){
+			if(($count =$queries)>500){$count=500;}
+		}
+		return $count;
+	}
+
 	public function initialize() {
 		\Ubiquity\utils\http\UResponse::setContentType('application/json');
 	}
@@ -23,10 +31,10 @@ class SwooleDbAsync extends \Ubiquity\controllers\Controller {
 	}
 
 	public function query($queries = 1) {
-		$queries = \min(\max($queries, 1), 500);
+		$count = self::getCount($queries);
 		$worlds = [];
 		$dbInstance = DAO::pool('async');
-		for ($i = 0; $i < $queries; ++ $i) {
+		for ($i = 0; $i < $count; ++ $i) {
 			$worlds[] = (DAO::executePrepared('world', [
 				'id' => \mt_rand(1, 10000)
 			]))->_rest;
