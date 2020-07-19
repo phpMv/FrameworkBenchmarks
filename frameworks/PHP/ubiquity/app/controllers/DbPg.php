@@ -14,7 +14,7 @@ class DbPg extends \Ubiquity\controllers\Controller {
 	protected static function getCount($queries){
 		$count=1;
 		if($queries>1){
-			if(($count =$queries)>500){$count=500;}
+			if(($count = $queries) > 500){$count = 500;}
 		}
 		return $count;
 	}
