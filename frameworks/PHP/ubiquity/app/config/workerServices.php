@@ -1,5 +1,4 @@
 <?php
-use controllers;
 
 \Ubiquity\cache\CacheManager::startProd($config);
 \Ubiquity\orm\DAO::setModelsDatabases([
