@@ -2,13 +2,12 @@
 namespace controllers;
 
 use Ubiquity\orm\DAO;
-use services\Benchmark;
-
+use controllers\utils\DbTait;
 /**
  * Bench controller.
  */
 class DbPg extends \Ubiquity\controllers\Controller {
-
+	use DbTrait;
 	public function __construct() {
 	}
 
@@ -25,7 +24,7 @@ class DbPg extends \Ubiquity\controllers\Controller {
 
 	public function query($queries = 1) {
 		$worlds = [];
-		$count=Benchmark::getCount($queries);
+		$count=DbTrait::getCount($queries);
 		for ($i = 0; $i < $count; ++ $i) {
 					$worlds[] = (DAO::executePrepared('world', [
 						'id' => \mt_rand(1, 10000)
@@ -36,7 +35,7 @@ class DbPg extends \Ubiquity\controllers\Controller {
 
 	public function update($queries = 1) {
 		$worlds = [];
-		$count=Benchmark::getCount($queries);
+		$count=DbTrait::getCount($queries);
 
 		for ($i = 0; $i < $count; ++ $i) {
 			$world = DAO::executePrepared('world', [
