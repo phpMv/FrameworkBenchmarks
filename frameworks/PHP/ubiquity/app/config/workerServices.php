@@ -11,7 +11,7 @@
 
 echo "Loading worlds\n";
 \Ubiquity\orm\DAO::warmupCache('models\\CachedWorld','',false);
-echo "End Loading worlds\n";
+echo "End Loading\n";
 
 \Ubiquity\cache\CacheManager::warmUpControllers([
 	'controllers\\Plaintext_',
@@ -24,6 +24,6 @@ $workerServer->onWorkerStart = function () use ($config) {
 	\Ubiquity\orm\DAO::startDatabase($config, 'pgsql');
 	\Ubiquity\orm\DAO::prepareGetById('world', 'models\\World');
 	\Ubiquity\orm\DAO::prepareGetAll('fortune', 'models\\Fortune');
-	//\Ubiquity\controllers\StartupAsync::warmupAction('controllers\\Fortunes_');
+	\Ubiquity\controllers\StartupAsync::warmupAction('controllers\\Fortunes_');
 };
 
