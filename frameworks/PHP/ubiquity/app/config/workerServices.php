@@ -25,6 +25,5 @@ $workerServer->onWorkerStart = function () use ($config) {
 	\Ubiquity\orm\DAO::startDatabase($config, 'pgsql');
 	\Ubiquity\orm\DAO::prepareGetById('world', 'models\\World');
 	\Ubiquity\orm\DAO::prepareGetAll('fortune', 'models\\Fortune');
-	(new controllers\Fortunes_())->index();
 };
 
