@@ -32,4 +32,6 @@ RUN /ubiquity/vendor/bin/Ubiquity init-cache
 
 RUN composer install --optimize-autoloader --classmap-authoritative --no-dev --quiet
 
+RUN chmod +x /ubiquity/run-fpm-memcached.sh
+
 CMD /ubiquity/run-fpm-memcached.sh
