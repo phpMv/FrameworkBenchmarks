@@ -28,10 +28,6 @@ RUN chmod 777 -R /ubiquity/app/cache/*
 
 RUN echo "opcache.preload=/ubiquity/app/config/preloader.script.php" >> /etc/php/7.4/fpm/php.ini
 
-RUN /ubiquity/vendor/bin/Ubiquity init-cache
-
-RUN composer install --optimize-autoloader --classmap-authoritative --no-dev --quiet
-
 RUN chmod +x /ubiquity/run-fpm-memcached.sh
 
 CMD /ubiquity/run-fpm-memcached.sh

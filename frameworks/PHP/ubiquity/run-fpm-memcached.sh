@@ -6,4 +6,8 @@
 
 ps aux | grep memcached
 
+/ubiquity/vendor/bin/Ubiquity init-cache
+
+composer install --optimize-autoloader --classmap-authoritative --no-dev
+
 service php7.4-fpm start && nginx -c /ubiquity/deploy/nginx.conf -g "daemon off;"
