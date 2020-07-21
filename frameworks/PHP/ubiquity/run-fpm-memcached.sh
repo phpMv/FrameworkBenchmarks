@@ -6,5 +6,4 @@
 
 ps aux | grep memcached
 
-service php7.4-fpm start && \
-    nginx -c /ubiquity/deploy/nginx.conf -g "daemon off;"
+service php7.4-fpm start && nginx -c /ubiquity/deploy/nginx.conf -g "daemon off;"
