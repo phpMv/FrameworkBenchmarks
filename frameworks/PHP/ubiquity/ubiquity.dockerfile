@@ -27,7 +27,7 @@ RUN composer require phpmv/ubiquity-devtools:dev-master phpmv/ubiquity-dev mindp
 
 RUN chmod 777 -R /ubiquity/app/cache/*
 
-RUN echo "opcache.preload=/ubiquity/app/config/preloader.script.php" >> /etc/php/7.4/fpm/php.ini
+#RUN echo "opcache.preload=/ubiquity/app/config/preloader.script.php" >> /etc/php/7.4/fpm/php.ini
 
 RUN chmod +x /ubiquity/run-fpm-memcached.sh
 
