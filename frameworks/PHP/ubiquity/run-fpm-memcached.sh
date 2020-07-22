@@ -6,7 +6,7 @@
 
 ps aux | grep memcached
 
-/ubiquity/vendor/bin/Ubiquity init-cache
+/ubiquity/vendor/bin/Ubiquity init-cache -t=all
 
 composer install --optimize-autoloader --classmap-authoritative --no-dev
 
