@@ -14,7 +14,7 @@ class Fortunes extends \Ubiquity\controllers\SimpleViewController {
 	public function index() {
 		$fortunes = SDAO::getAll(Fortune::class);
 		$fortunes[] = new Fortune(0, 'Additional fortune added at request time.');
-		\usort($fortunes, 'self::compareTo');
+		\usort($fortunes, 'self::compare');
 		$this->loadView('Fortunes/index.php', [
 			'fortunes' => $fortunes
 		]);
