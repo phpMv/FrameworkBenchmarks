@@ -22,7 +22,7 @@ WORKDIR /ubiquity
 
 RUN if [ $(nproc) = 2 ]; then sed -i "s|pm.max_children = 1024|pm.max_children = 512|g" /etc/php/7.4/fpm/php-fpm.conf ; fi;
 
-RUN composer require phpmv/ubiquity-devtools:dev-master mindplay/annotations --dev
+RUN composer require phpmv/ubiquity-devtools:dev-master phpmv/ubiquity-dev mindplay/annotations --dev
 
 RUN chmod 777 -R /ubiquity/app/cache/*
 
