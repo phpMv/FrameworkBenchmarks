@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install memcached libmemcached-tools -y
 
 RUN apt-get update && apt-get install -y pkg-config libmemcached-dev zlib1g-dev \
     && pecl install memcached \
-    && echo "extension=memcached.so" > /etc/php/7.4/fpm/conf.d/20-memcached.ini
+    && echo "extension=memcached.so" > /etc/php/7.4/fpm/conf.d/20-memcached.ini \
+    && echo "extension=memcached.so" > /etc/php/7.4/cli/conf.d/20-memcached.ini
 
 RUN apt-get install -yqq composer > /dev/null
 
