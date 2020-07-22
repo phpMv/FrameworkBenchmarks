@@ -47,7 +47,7 @@ class Db extends \Ubiquity\controllers\Controller {
 			SDAO::toUpdate($world);
 			$worlds[] = $world->_rest;
 		}
-		SDAO::updateGroups($queries);
+		SDAO::updateGroups($count);
 
 		echo \json_encode($worlds);
 	}
