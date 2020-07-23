@@ -57,7 +57,7 @@ return array(
 	"cache" => [
 		"directory" => "cache/",
 		"system" => "Ubiquity\\cache\\system\\MemCachedDriver",
-		"params" => ['servers'=>[['port'=>11211],['port'=>11212]]]
+		"params" => ['servers'=>[['port'=>11211]]]
 	],
 	"mvcNS" => [
 		"models" => "models",
