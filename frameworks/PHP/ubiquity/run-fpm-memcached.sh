@@ -7,8 +7,8 @@ sed -i "s|11211|11212|g" /etc/memcached_11212.conf
 cp /lib/systemd/system/memcached.service /lib/systemd/system/memcached2.service
 sed -i "s|/etc/memcached.conf|/etc/memcached_11212.conf|g" /lib/systemd/system/memcached2.service
 
-/etc/init.d/memcached2 start -d -m 256 -u memcache
-/etc/init.d/memcached start -d -m 256 -u memcache
+service memcached start -u memcache
+service memcached2 start -u memcache
 
 #/etc/init.d/memcached start -d -p 11211 -m 256 -u memcache
 
