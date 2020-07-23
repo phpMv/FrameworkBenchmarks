@@ -1,17 +1,16 @@
 #!/bin/bash
 
 /etc/init.d/memcached stop
+cp /etc/memcached.conf /etc/memcached_11212.conf
+sed -i "s|11211|11212|g" /etc/memcached_11212.conf
 
-cp /usr/lib/systemd/system/memcached.service /usr/lib/systemd/system/memcached_controller.service
-sed-i ' s% environmentfile=/etc/sysconfig/memcached%environmentfile=/etc/sysconfig/memcached_controller% ' /usr/lib/systemd/system/memcached_controller.service
+cp /lib/systemd/system/memcached.service /lib/systemd/system/memcached2.service
+sed -i "s|/etc/memcached.conf|/etc/memcached_11212.conf|g" /lib/systemd/system/memcached2.service
 
-ln -s /usr/lib/systemd/system/memcached_controller.service /etc/systemd/system/multi-user.target.wants/memcached_controller.service 
+systemctl start memcached2.service
+systemctl start memcached.service
 
-cp /etc/sysconfig/memcached /etc/sysconfig/memcached_controller
-sed -i ' s/port= "11211/port=" 11212 "/' /etc/sysconfig/memcached_controller
-
-systemctl Enable Memcached_controller
-systemctl Restart Memcached_controller
+#/etc/init.d/memcached start -d -p 11211 -m 256 -u memcache
 
 ps aux | grep memcached
 
