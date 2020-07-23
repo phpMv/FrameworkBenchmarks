@@ -1,8 +1,8 @@
 #!/bin/bash
 
-/etc/init.d/memcached start -d -l 127.0.0.1:11211, 127.0.0.1:11212 -m 256 -u memcache
-
-/etc/init.d/memcached status
+/etc/init.d/memcached stop
+/etc/init.d/memcached -d -p 11211 -m 256 -u memcache
+/etc/init.d/memcached -d -p 11212 -m 256 -u memcache
 
 ps aux | grep memcached
 
