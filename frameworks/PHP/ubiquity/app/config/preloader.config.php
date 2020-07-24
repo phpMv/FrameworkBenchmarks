@@ -5,7 +5,7 @@ return array(
 	"libraries-parts" => array(),
 	"callback" => function ($pre) {
 		$pre->addApplicationControllers()
-			->addUbiquityViews()
+			->addApplicationModels()
 			->addUbiquityBasics(true);
 	}
 );
