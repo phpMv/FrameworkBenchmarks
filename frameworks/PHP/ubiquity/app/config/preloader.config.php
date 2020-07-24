@@ -4,6 +4,8 @@ return array(
 	"excludeds" => array(),
 	"libraries-parts" => array(),
 	"callback" => function ($pre) {
-
+		$pre->addUbiquityViews()
+			->addApplicationModels()
+			->addUbiquityBasics(true);
 	}
 );
