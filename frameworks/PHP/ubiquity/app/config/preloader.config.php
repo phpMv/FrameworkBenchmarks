@@ -7,6 +7,6 @@ return array(
 		$pre->addApplicationControllers()
 			->addUbiquityViews()
 			->addApplicationModels()
-			->addUbiquityBasics(false);
+;
 	}
 );
