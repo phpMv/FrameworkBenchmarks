@@ -79,7 +79,7 @@ class Controller extends BaseController {
 			];
 			$rows[] = $row;
 		}
-		Batch::update(new World(), $values, 'id');
+		// Batch::update(new World(), $values, 'id');
 		return $rows;
 	}
 
