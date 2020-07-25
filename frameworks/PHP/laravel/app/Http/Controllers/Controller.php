@@ -52,10 +52,11 @@ class Controller extends BaseController {
 			do {
 				$newId = mt_rand(1, 10000);
 			} while ($oldId === $newId);
-			$row->randomNumber = $newId;
 			do {
 				try {
-					$saved = $row->save();
+					$saved = $row->update([
+						'randomNumer' => $newId
+					]);
 				} catch (\Exception $e) {
 					$saved = false;
 				}
