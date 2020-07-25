@@ -27,6 +27,7 @@ RUN deploy/swoole/install-composer.sh
 RUN apt-get update -yqq > /dev/null && \
     apt-get install -yqq git unzip > /dev/null
 COPY deploy/swoole/composer* ./
+RUN php composer.phar require mavinoo/laravel-batch
 RUN php composer.phar install -a --no-dev --quiet
 
 RUN php artisan optimize

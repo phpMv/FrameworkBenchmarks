@@ -29,7 +29,7 @@
 			"db_url": "/db",
 			"query_url": "/queries/",
 			"fortune_url": "/fortunes",
-			"update_url": "/updates/",
+			"update_url": "/bulkUpdates/",
 			"plaintext_url": "/plaintext",
 			"port": 8080,
 			"approach": "Realistic",

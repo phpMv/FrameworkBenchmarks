@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Fortune;
 use App\Models\World;
 use Illuminate\Routing\Controller as BaseController;
+use Mavinoo\Batch\BatchFacade;
 
 class Controller extends BaseController {
 
@@ -52,18 +53,34 @@ class Controller extends BaseController {
 			do {
 				$newId = mt_rand(1, 10000);
 			} while ($oldId === $newId);
+			$row->randomNumber = $newId;
 			do {
-				try {
-					$saved = $row->update([
-						'randomNumer' => $newId
-					]);
-				} catch (\Exception $e) {
-					$saved = false;
-				}
+				$saved = $row->save();
 			} while (! $saved);
 			$rows[] = $row;
 		}
 
+		return $rows;
+	}
+
+	public function bulkUpdates($queries = 1) {
+		$rows = [];
+		$values = [];
+		$numbers = $this->getUniqueRandomNumbers($this->clamp($queries));
+		foreach ($numbers as $id) {
+			$row = World::find($id);
+			$oldRn = $row->randomNumber;
+			do {
+				$newRn = mt_rand(1, 10000);
+			} while ($oldRn === $newRn);
+			$row->randomNumber = $newRn;
+			$values[] = [
+				'id' => $id,
+				'randomNumber' => $newRn
+			];
+			$rows[] = $row;
+		}
+		BatchFacade::update(new World(), $values, 'id');
 		return $rows;
 	}
 
