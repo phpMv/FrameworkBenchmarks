@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Models\Fortune;
 use App\Models\World;
 use Illuminate\Routing\Controller as BaseController;
-use Mavinoo\Batch\BatchFacade;
 
 class Controller extends BaseController {
 
@@ -80,7 +79,7 @@ class Controller extends BaseController {
 			];
 			$rows[] = $row;
 		}
-		BatchFacade::update(new World(), $values, 'id');
+		Batch::update(new World(), $values, 'id');
 		return $rows;
 	}
 
