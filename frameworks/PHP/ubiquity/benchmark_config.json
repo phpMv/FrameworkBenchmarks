@@ -50,6 +50,9 @@
         "versus": "workerman"
       },
       "workerman-raw": {
+        "db_url": "/DbPgRaw",
+        "query_url": "/DbPgRaw/query/",
+        "update_url": "/DbPgRaw/update/",
         "fortune_url": "/FortunesRaw",
         "port": 8080,
         "approach": "Realistic",
@@ -58,7 +61,7 @@
         "framework": "Ubiquity",
         "language": "PHP",
         "flavor": "PHP7",
-        "orm": "Full",
+        "orm": "raw",
         "platform": "workerman",
         "webserver": "none",
         "os": "Linux",
