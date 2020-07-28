@@ -49,6 +49,24 @@
         "notes": "",
         "versus": "workerman"
       },
+      "workerman-raw": {
+        "fortune_url": "/FortunesRaw",
+        "port": 8080,
+        "approach": "Realistic",
+        "classification": "Fullstack",
+        "database": "Postgres",
+        "framework": "Ubiquity",
+        "language": "PHP",
+        "flavor": "PHP7",
+        "orm": "Full",
+        "platform": "workerman",
+        "webserver": "none",
+        "os": "Linux",
+        "database_os": "Linux",
+        "display_name": "ubiquity-workerman-raw",
+        "notes": "",
+        "versus": "workerman"
+      },
       "swoole": {
         "json_url": "/Json_",
         "plaintext_url": "/Plaintext_",
