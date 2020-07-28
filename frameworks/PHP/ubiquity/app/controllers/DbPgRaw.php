@@ -1,12 +1,14 @@
 <?php
 namespace controllers;
 
+use controllers\utils\DbTrait;
 use controllers\utils\RawDb;
 
 /**
  * Bench controller.
  */
 class DbPgRaw extends \Ubiquity\controllers\Controller {
+	use DbTrait;
 
 	public function __construct() {}
 
@@ -23,7 +25,7 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 
 	public function query($queries = 1) {
 		$worlds = [];
-		$count = \min(\max($queries, 1), 500);
+		$count = self::getCount($queries);
 		while ($count --) {
 			RawDb::$worlds->execute([
 				\mt_rand(1, 10000)
@@ -35,9 +37,9 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 
 	public function update($queries = 1) {
 		$worlds = [];
-		$count = \min(\max($queries, 1), 500);
+		$count = self::getCount($queries);
 
-		for ($i = 0; $i < $count; ++ $i) {
+		while ($count --) {
 			$id = \mt_rand(1, 10000);
 			RawDb::$random->execute([
 				$id
