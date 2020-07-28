@@ -17,6 +17,16 @@ class RawDb {
 		self::$db = \Ubiquity\db\Database::start('raw', $config);
 		self::$fortunes = self::$db->prepareStatement('SELECT id,message FROM Fortune');
 		self::$worlds = self::$db->prepareStatement('SELECT id,randomNumber FROM World WHERE id=?::INTEGER');
+		$queries = [
+			1,
+			5,
+			10,
+			15,
+			20
+		];
+		foreach ($queries as $v) {
+			self::$updates[$v] = self::prepareUpdate($v);
+		}
 	}
 
 	private static function prepareUpdate(int $count) {
