@@ -5,7 +5,10 @@ class RawDb {
 
 	private static $updates;
 
-	private static $toUpdate;
+	private static $toUpdate = [
+		'values' => [],
+		'keys' => []
+	];
 
 	private static $db;
 
