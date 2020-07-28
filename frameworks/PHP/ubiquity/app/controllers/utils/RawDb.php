@@ -5,11 +5,6 @@ class RawDb {
 
 	private static $updates;
 
-	private static $toUpdate = [
-		'values' => [],
-		'keys' => []
-	];
-
 	private static $db;
 
 	public static $fortunes;
@@ -26,21 +21,22 @@ class RawDb {
 	}
 
 	private static function prepareUpdate(int $count) {
-		$sql = 'UPDATE World SET randomNumber = CASE id' . \str_repeat(' WHEN ?::INTEGER THEN ?::INTEGER ', $count) . 'END WHERE id IN (' . \str_repeat('?::INTEGER,', $count - 1) . '?::INTEGER)';
+		$sql = 'UPDATE World SET randomNumber = (CASE id' . \str_repeat(' WHEN ? THEN ? ', $count) . 'ELSE randomNumber END) WHERE id IN (' . \str_repeat('?::INTEGER,', $count - 1) . '?)';
 		return self::$db->prepareStatement($sql);
 	}
 
-	public static function toUpdate($world) {
-		self::$toUpdate['values'][] = self::$toUpdate['keys'][] = $world['id'];
-		self::$toUpdate['values'][] = $world['randomNumber'];
-	}
-
-	public static function update(int $count) {
+	public static function update(array $worlds) {
+		$count = \count($worlds);
 		self::$updates[$count] ??= self::prepareUpdate($count);
+		$values = [];
+		$keys = [];
+		foreach ($worlds as $world) {
+			$values[] = $keys[] = $world['id'];
+			$values[] = $world['randomNumber'];
+		}
 		self::$updates[$count]->execute([
-			...self::$toUpdate['values'],
-			...self::$toUpdate['keys']
+			...$values,
+			...$keys
 		]);
-		self::$toUpdate['values'] = self::$toUpdate['keys'] = [];
 	}
 }
