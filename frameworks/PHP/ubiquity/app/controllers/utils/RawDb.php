@@ -5,6 +5,8 @@ class RawDb {
 
 	private static $updates;
 
+	private static $toUpdate;
+
 	private static $db;
 
 	public static $fortunes;
@@ -25,18 +27,19 @@ class RawDb {
 		return self::$db->prepareStatement($sql);
 	}
 
-	public static function update(array $worlds) {
-		$count = \count($worlds);
+	public function toUpdate($world) {
+		self::$toUpdate['values'] += [
+			$world['id'],
+			self::$toUpdate['keys'][] = $world['randomNumber']
+		];
+	}
+
+	public static function update(int $count) {
 		self::$updates[$count] ??= self::prepareUpdate($count);
-		$values = [];
-		$keys = [];
-		foreach ($worlds as $world) {
-			$values[] = $keys[] = $world['id'];
-			$values[] = $world['randomNumber'];
-		}
 		self::$updates[$count]->execute([
-			...$values,
-			...$keys
+			...self::$toUpdate['values'],
+			...self::$toUpdate['keys']
 		]);
+		self::$toUpdate['values'] = self::$toUpdate['keys'] = [];
 	}
 }
