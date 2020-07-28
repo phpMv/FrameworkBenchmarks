@@ -40,10 +40,14 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 		$count = self::getCount($queries);
 
 		while ($count --) {
-			RawDb::$worlds->execute([
-				\mt_rand(1, 10000)
+			$id = \mt_rand(1, 10000);
+			RawDb::$random->execute([
+				$id
 			]);
-			$row = RawDb::$worlds->fetch();
+			$row = [
+				'id' => $id,
+				'randomNumber' => RawDb::$random->fetchColumn()
+			];
 			$row['randomNumber'] = \mt_rand(1, 10000);
 			$worlds[] = $row;
 		}
