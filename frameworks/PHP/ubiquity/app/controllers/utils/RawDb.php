@@ -36,7 +36,9 @@ class RawDb {
 
 	public static function update(array $worlds) {
 		$count = \count($worlds);
-		self::$updates[$count] ??= self::prepareUpdate($count);
+		if (! isset(self::$updates[$count])) {
+			self::$updates[$count] = self::prepareUpdate($count);
+		}
 		$values = [];
 		$keys = [];
 		foreach ($worlds as $world) {
