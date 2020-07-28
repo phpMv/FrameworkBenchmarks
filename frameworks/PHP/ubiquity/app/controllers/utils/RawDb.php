@@ -31,10 +31,8 @@ class RawDb {
 	}
 
 	public static function toUpdate($world) {
-		self::$toUpdate['values'] += [
-			$world['id'],
-			self::$toUpdate['keys'][] = $world['randomNumber']
-		];
+		self::$toUpdate['values'][] = self::$toUpdate['keys'][] = $world['id'];
+		self::$toUpdate['values'][] = $world['randomNumber'];
 	}
 
 	public static function update(int $count) {
