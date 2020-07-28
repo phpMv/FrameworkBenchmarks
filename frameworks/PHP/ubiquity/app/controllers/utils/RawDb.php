@@ -31,8 +31,8 @@ class RawDb {
 		$values = [];
 		$keys = [];
 		foreach ($worlds as $world) {
-			$values[] = $keys[] = (int) $world['id'];
-			$values[] = (int) $world['randomNumber'];
+			$values[] = $keys[] = $world['id'];
+			$values[] = $world['randomNumber'];
 		}
 		self::$updates[$count]->execute([
 			...$values,
