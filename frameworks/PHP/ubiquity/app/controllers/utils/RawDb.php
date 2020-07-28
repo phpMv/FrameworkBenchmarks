@@ -16,8 +16,8 @@ class RawDb {
 	public static function prepare(array $config) {
 		self::$db = \Ubiquity\db\Database::start('raw', $config);
 		self::$fortunes = self::$db->prepareStatement('SELECT id,message FROM Fortune');
-		self::$worlds = self::$db->prepareStatement('SELECT id,randomNumber FROM World WHERE id=?');
-		self::$random = self::$db->prepareStatement('SELECT randomNumber FROM World WHERE id=?');
+		self::$worlds = self::$db->prepareStatement('SELECT id,randomNumber FROM World WHERE id=?::INTEGER');
+		self::$random = self::$db->prepareStatement('SELECT randomNumber FROM World WHERE id=?::INTEGER');
 	}
 
 	private static function prepareUpdate(int $count) {
