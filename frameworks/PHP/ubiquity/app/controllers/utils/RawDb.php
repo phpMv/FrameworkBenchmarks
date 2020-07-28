@@ -21,7 +21,7 @@ class RawDb {
 	}
 
 	private static function prepareUpdate(int $count) {
-		$sql = 'UPDATE World SET randomNumber = CASE id' . \str_repeat(' WHEN ?::INTEGER THEN ?::INTEGER ', $count) . 'END WHERE id IN (' . \str_repeat('?::INTEGER,', $count - 1) . '?::INTEGER)';
+		$sql = 'UPDATE World SET randomNumber = CASE id' . \str_repeat(' WHEN ? THEN ? ', $count) . 'END WHERE id IN (' . \str_repeat('?::INTEGER,', $count - 1) . '?)';
 		return self::$db->prepareStatement($sql);
 	}
 
@@ -31,8 +31,8 @@ class RawDb {
 		$values = [];
 		$keys = [];
 		foreach ($worlds as $world) {
-			$values[] = $keys[] = $world['id'];
-			$values[] = $world['randomNumber'];
+			$values[] = $keys[] = (int) $world['id'];
+			$values[] = (int) $world['randomNumber'];
 		}
 		self::$updates[$count]->execute([
 			...$values,
