@@ -27,7 +27,7 @@ class RawDb {
 		return self::$db->prepareStatement($sql);
 	}
 
-	public function toUpdate($world) {
+	public static function toUpdate($world) {
 		self::$toUpdate['values'] += [
 			$world['id'],
 			self::$toUpdate['keys'][] = $world['randomNumber']
