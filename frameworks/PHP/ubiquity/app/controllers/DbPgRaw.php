@@ -2,7 +2,6 @@
 namespace controllers;
 
 use controllers\utils\DbTrait;
-use controllers\utils\RawDb;
 
 /**
  * Bench controller.
@@ -10,44 +9,53 @@ use controllers\utils\RawDb;
 class DbPgRaw extends \Ubiquity\controllers\Controller {
 	use DbTrait;
 
+	protected $statement;
+
 	public function __construct() {}
 
 	public function initialize() {
 		\Ubiquity\utils\http\UResponse::setContentType('application/json');
+		$this->statement = \Ubiquity\db\Database::getNamedStatement('world');
 	}
 
 	public function index() {
-		RawDb::$worlds->execute([
+		$this->statement->execute([
 			\mt_rand(1, 10000)
 		]);
-		echo \json_encode(RawDb::$worlds->fetch());
+		echo \json_encode($this->statement->fetch());
 	}
 
 	public function query($queries = 1) {
 		$worlds = [];
 		$count = $this->getCount($queries);
+		$st = $this->statement;
 		while ($count --) {
-			RawDb::$worlds->execute([
+			$st->execute([
 				\mt_rand(1, 10000)
 			]);
-			$worlds[] = RawDb::$worlds->fetch();
+			$worlds[] = $st->fetch();
 		}
 		echo \json_encode($worlds);
 	}
 
 	public function update($queries = 1) {
 		$worlds = [];
+		$keys = $values = [];
 		$count = $this->getCount($queries);
-
+		$st = $this->statement;
 		while ($count --) {
-			RawDb::$worlds->execute([
-				\mt_rand(1, 10000)
+			$values[] = $keys[] = $id = \mt_rand(1, 10000);
+			$st->execute([
+				$id
 			]);
-			$row = RawDb::$worlds->fetch();
-			$row['randomNumber'] = \mt_rand(1, 10000);
+			$row = $st->fetch();
+			$values[] = $row['randomNumber'] = \mt_rand(1, 10000);
 			$worlds[] = $row;
 		}
-		RawDb::update($worlds);
+		\Ubiquity\db\Database::getNamedStatement($count)->execute([
+			...$keys,
+			...$values
+		]);
 		echo \json_encode($worlds);
 	}
 }
