@@ -49,6 +49,24 @@
         "notes": "",
         "versus": "workerman"
       },
+      "workerman-twig": {
+        "fortune_url": "/Fortunes_twig",
+        "port": 8080,
+        "approach": "Realistic",
+        "classification": "Fullstack",
+        "database": "Postgres",
+        "framework": "Ubiquity",
+        "language": "PHP",
+        "flavor": "PHP7",
+        "orm": "Full",
+        "platform": "workerman",
+        "webserver": "none",
+        "os": "Linux",
+        "database_os": "Linux",
+        "display_name": "ubiquity-workerman-twig",
+        "notes": "",
+        "versus": "workerman"
+      },
       "workerman-raw": {
         "db_url": "/DbPgRaw",
         "query_url": "/DbPgRaw/query/",
