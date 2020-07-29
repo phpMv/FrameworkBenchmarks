@@ -13,13 +13,17 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 
 	protected static $updates;
 
+	/**
+	 *
+	 * @var \Ubiquity\db\Database
+	 */
 	protected static $db;
 
 	public function __construct() {}
 
-	public static function warmup($db) {
+	public static function warmup(\Ubiquity\db\Database $db) {
 		self::$db = $db;
-		self::$statement = $db->prepareStatement('SELECT id,randomNumber FROM World WHERE id=?::INTEGER LIMIT 1');
+		self::$statement = $db->prepareStatement('SELECT id,randomNumber FROM World WHERE id=?');
 	}
 
 	public function initialize() {
