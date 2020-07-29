@@ -3,7 +3,7 @@ namespace controllers\utils;
 
 trait DbTrait {
 
-	public static function getCount($queries) {
+	public function getCount($queries) {
 		$count = 1;
 		if ($queries > 1) {
 			if (($count = $queries) > 500) {

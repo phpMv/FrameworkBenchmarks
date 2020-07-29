@@ -25,7 +25,7 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 
 	public function query($queries = 1) {
 		$worlds = [];
-		$count = self::getCount($queries);
+		$count = $this->getCount($queries);
 		while ($count --) {
 			RawDb::$worlds->execute([
 				\mt_rand(1, 10000)
@@ -37,7 +37,7 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 
 	public function update($queries = 1) {
 		$worlds = [];
-		$count = self::getCount($queries);
+		$count = $this->getCount($queries);
 
 		while ($count --) {
 			RawDb::$worlds->execute([

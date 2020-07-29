@@ -26,7 +26,7 @@ class RawDb {
 		$values = [];
 		$keys = [];
 		foreach ($worlds as $world) {
-			$values[] = $keys[] = $world['id'];
+			$values[] = ($keys[] = $world['id']);
 			$values[] = $world['randomNumber'];
 		}
 		$count = \count($worlds);
