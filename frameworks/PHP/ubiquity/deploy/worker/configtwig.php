@@ -19,7 +19,7 @@ return array(
 	"debug" => false,
 	"templateEngine" => "Ubiquity\\views\\engine\\Twig",
 	"templateEngineOptions" => array(
-		"cache" => false
+		"cache" => true
 	),
 	"cache" => [
 		"directory" => "cache/",
