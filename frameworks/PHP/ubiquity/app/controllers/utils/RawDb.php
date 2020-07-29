@@ -38,8 +38,6 @@ class RawDb {
 		$count = \count($worlds);
 		self::$updates[$count] ??= self::prepareUpdate($count);
 
-		$values = [];
-		$keys = [];
 		foreach ($worlds as $world) {
 			$values[] = $keys[] = $world['id'];
 			$values[] = $world['randomNumber'];
