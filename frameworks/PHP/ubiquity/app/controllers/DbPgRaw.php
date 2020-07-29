@@ -61,8 +61,8 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 			$worlds[] = $row;
 		}
 		(self::$updates[$count] ?? self::prepareUpdate($count))->execute([
-			...$keys,
-			...$values
+			...$values,
+			...$keys
 		]);
 		echo \json_encode($worlds);
 	}
