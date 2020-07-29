@@ -20,16 +20,6 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 	public static function warmup($db) {
 		self::$db = $db;
 		self::$statement = $db->prepareStatement('SELECT id,randomNumber FROM World WHERE id=?::INTEGER LIMIT 1');
-		$updates = [
-			1,
-			5,
-			10,
-			15,
-			20
-		];
-		foreach ($updates as $val) {
-			self::prepareUpdate($val);
-		}
 	}
 
 	public function initialize() {
@@ -37,9 +27,7 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 	}
 
 	public function index() {
-		self::$statement->execute([
-			\mt_rand(1, 10000)
-		]);
+		self::$statement->execute([\mt_rand(1, 10000)]);
 		echo \json_encode(self::$statement->fetch());
 	}
 
@@ -48,9 +36,7 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 		$count = $this->getCount($queries);
 		$st = self::$statement;
 		while ($count --) {
-			$st->execute([
-				\mt_rand(1, 10000)
-			]);
+			$st->execute([\mt_rand(1, 10000)]);
 			$worlds[] = $st->fetch();
 		}
 		echo \json_encode($worlds);
@@ -63,17 +49,13 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 		$st = self::$statement;
 		for ($i = 0; $i < $count; ++ $i) {
 			$values[] = $keys[] = $id = \mt_rand(1, 10000);
-			$st->execute([
-				$id
-			]);
+			$st->execute([$id]);
 			$row = $st->fetch();
+
 			$values[] = $row['randomNumber'] = \mt_rand(1, 10000);
 			$worlds[] = $row;
 		}
-		(self::$updates[$count] ?? self::prepareUpdate($count))->execute([
-			...$values,
-			...$keys
-		]);
+		(self::$updates[$count] ?? self::prepareUpdate($count))->execute([...$values,...$keys]);
 		echo \json_encode($worlds);
 	}
 
