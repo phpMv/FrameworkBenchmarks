@@ -20,6 +20,16 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 	public static function warmup($db) {
 		self::$db = $db;
 		self::$statement = $db->prepareStatement('SELECT id,randomNumber FROM World WHERE id=?::INTEGER LIMIT 1');
+		$updates = [
+			1,
+			5,
+			10,
+			15,
+			20
+		];
+		foreach ($updates as $val) {
+			self::prepareUpdate($val);
+		}
 	}
 
 	public function initialize() {

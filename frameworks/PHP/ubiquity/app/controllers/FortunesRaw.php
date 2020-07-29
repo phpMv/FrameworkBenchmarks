@@ -1,14 +1,17 @@
 <?php
 namespace controllers;
 
-use controllers\utils\RawDb;
-
 class FortunesRaw extends \Ubiquity\controllers\SimpleViewAsyncController {
 
+	protected static $statement;
+
+	public static function warmup(\Ubiquity\db\Database $db) {
+		$db->prepareStatement('SELECT id,message FROM Fortune');
+	}
 
 	public function index() {
-		RawDb::$fortunes->execute();
-		$fortunes= RawDb::$fortunes->fetchAll(\PDO::FETCH_KEY_PAIR);
+		self::$statement->execute();
+		$fortunes = self::$statement->fetchAll(\PDO::FETCH_KEY_PAIR);
 		$fortunes[0] = 'Additional fortune added at request time.';
 		\asort($fortunes);
 		$this->loadView('Fortunes/raw.php', [
