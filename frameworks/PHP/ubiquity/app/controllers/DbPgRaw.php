@@ -11,14 +11,15 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 
 	protected static $statement;
 
+	protected static $updates;
+
 	protected static $db;
 
 	public function __construct() {}
 
 	public static function warmup($db) {
 		self::$db = $db;
-		self::$statement = $db->prepareNamedStatement('world', 'SELECT id,randomNumber FROM World WHERE id=?::INTEGER LIMIT 1');
-		;
+		self::$statement = $db->prepareStatement('SELECT id,randomNumber FROM World WHERE id=?::INTEGER LIMIT 1');
 	}
 
 	public function initialize() {
@@ -29,7 +30,7 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 		self::$statement->execute([
 			\mt_rand(1, 10000)
 		]);
-		echo \json_encode($this->statement->fetch());
+		echo \json_encode(self::$statement->fetch());
 	}
 
 	public function query($queries = 1) {
@@ -59,10 +60,15 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 			$values[] = $row['randomNumber'] = \mt_rand(1, 10000);
 			$worlds[] = $row;
 		}
-		self::$db->getNamedStatement($count)->execute([
+		(self::$updates[$count] ?? self::prepareUpdate($count))->execute([
 			...$keys,
 			...$values
 		]);
 		echo \json_encode($worlds);
+	}
+
+	private static function prepareUpdate(int $count) {
+		$sql = 'UPDATE World SET randomNumber = CASE id' . \str_repeat(' WHEN ?::INTEGER THEN ?::INTEGER ', $count) . 'END WHERE id IN (' . \str_repeat('?::INTEGER,', $count - 1) . '?::INTEGER)';
+		return self::$updates[$count] = self::$db->prepareStatement($sql);
 	}
 }
