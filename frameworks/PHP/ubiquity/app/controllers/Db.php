@@ -10,6 +10,7 @@ use controllers\utils\DbTrait;
  */
 class Db extends \Ubiquity\controllers\Controller {
 	use DbTrait;
+
 	public function __construct() {}
 
 	public function initialize() {
@@ -20,16 +21,16 @@ class Db extends \Ubiquity\controllers\Controller {
 	public function index() {
 		echo \json_encode((SDAO::getById(World::class, [
 			'id' => \mt_rand(1, 10000)
-		],false))->_rest);
+		], false))->_rest);
 	}
 
 	public function query($queries = 1) {
 		$worlds = [];
-		$count=self::getCount($queries);
+		$count = $this->getCount($queries);
 		for ($i = 0; $i < $count; ++ $i) {
 			$worlds[] = (SDAO::getById(World::class, [
 				'id' => \mt_rand(1, 10000)
-			],false))->_rest;
+			], false))->_rest;
 		}
 		echo \json_encode($worlds);
 	}
@@ -37,12 +38,12 @@ class Db extends \Ubiquity\controllers\Controller {
 	public function update($queries = 1) {
 		$worlds = [];
 
-		$count=self::getCount($queries);
+		$count = $this->getCount($queries);
 		$ids = $this->getUniqueRandomNumbers($count);
 		foreach ($ids as $id) {
 			$world = SDAO::getById(World::class, [
 				'id' => $id
-			],false);
+			], false);
 			$world->randomNumber = \mt_rand(1, 10000);
 			SDAO::toUpdate($world);
 			$worlds[] = $world->_rest;
@@ -51,7 +52,6 @@ class Db extends \Ubiquity\controllers\Controller {
 
 		echo \json_encode($worlds);
 	}
-
 
 	private function getUniqueRandomNumbers($count) {
 		$res = [];

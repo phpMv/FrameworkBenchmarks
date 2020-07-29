@@ -3,10 +3,13 @@ namespace controllers;
 
 use Ubiquity\orm\DAO;
 use services\Benchmark;
+use controllers\utils\DbTrait;
+
 /**
  * Bench controller.
  */
 class SwooleDbAsync extends \Ubiquity\controllers\Controller {
+	use DbTrait;
 
 	public function initialize() {
 		\Ubiquity\utils\http\UResponse::setContentType('application/json');
@@ -23,7 +26,7 @@ class SwooleDbAsync extends \Ubiquity\controllers\Controller {
 	}
 
 	public function query($queries = 1) {
-		$count = Benchmark::getCount($queries);
+		$count = $this->getCount($queries);
 		$worlds = [];
 		$dbInstance = DAO::pool('async');
 		for ($i = 0; $i < $count; ++ $i) {

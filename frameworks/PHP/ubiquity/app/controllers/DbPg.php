@@ -3,14 +3,14 @@ namespace controllers;
 
 use Ubiquity\orm\DAO;
 use controllers\utils\DbTrait;
+
 /**
  * Bench controller.
  */
 class DbPg extends \Ubiquity\controllers\Controller {
 	use DbTrait;
 
-	public function __construct() {
-	}
+	public function __construct() {}
 
 	public function initialize() {
 		\Ubiquity\utils\http\UResponse::setContentType('application/json');
@@ -25,10 +25,10 @@ class DbPg extends \Ubiquity\controllers\Controller {
 
 	public function query($queries = 1) {
 		$worlds = [];
-		$count=self::getCount($queries);
+		$count = $this->getCount($queries);
 		for ($i = 0; $i < $count; ++ $i) {
-					$worlds[] = (DAO::executePrepared('world', [
-						'id' => \mt_rand(1, 10000)
+			$worlds[] = (DAO::executePrepared('world', [
+				'id' => \mt_rand(1, 10000)
 			]))->_rest;
 		}
 		echo \json_encode($worlds);
@@ -36,7 +36,7 @@ class DbPg extends \Ubiquity\controllers\Controller {
 
 	public function update($queries = 1) {
 		$worlds = [];
-		$count=self::getCount($queries);
+		$count = $this->getCount($queries);
 
 		for ($i = 0; $i < $count; ++ $i) {
 			$world = DAO::executePrepared('world', [
