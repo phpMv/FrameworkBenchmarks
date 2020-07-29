@@ -39,16 +39,15 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 		$worlds = [];
 		$count = self::getCount($queries);
 
-		for ($i = 0; $i < $count; ++ $i) {
+		while ($count --) {
 			RawDb::$worlds->execute([
 				\mt_rand(1, 10000)
 			]);
 			$row = RawDb::$worlds->fetch();
 			$row['randomNumber'] = \mt_rand(1, 10000);
 			$worlds[] = $row;
-			RawDb::toUpdate($row);
 		}
-		RawDb::update($count);
+		RawDb::update($worlds);
 		echo \json_encode($worlds);
 	}
 }
