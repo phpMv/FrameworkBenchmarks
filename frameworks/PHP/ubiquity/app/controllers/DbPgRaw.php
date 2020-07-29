@@ -9,17 +9,24 @@ use controllers\utils\DbTrait;
 class DbPgRaw extends \Ubiquity\controllers\Controller {
 	use DbTrait;
 
-	protected $statement;
+	protected static $statement;
+
+	protected static $db;
 
 	public function __construct() {}
 
+	public static function warmup($db) {
+		self::$db = $db;
+		self::$statement = $db->prepareNamedStatement('world', 'SELECT id,randomNumber FROM World WHERE id=?::INTEGER LIMIT 1');
+		;
+	}
+
 	public function initialize() {
 		\Ubiquity\utils\http\UResponse::setContentType('application/json');
-		$this->statement = \Ubiquity\db\Database::getNamedStatement('world');
 	}
 
 	public function index() {
-		$this->statement->execute([
+		self::$statement->execute([
 			\mt_rand(1, 10000)
 		]);
 		echo \json_encode($this->statement->fetch());
@@ -28,7 +35,7 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 	public function query($queries = 1) {
 		$worlds = [];
 		$count = $this->getCount($queries);
-		$st = $this->statement;
+		$st = self::$statement;
 		while ($count --) {
 			$st->execute([
 				\mt_rand(1, 10000)
@@ -42,7 +49,7 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 		$worlds = [];
 		$keys = $values = [];
 		$count = $this->getCount($queries);
-		$st = $this->statement;
+		$st = self::$statement;
 		while ($count --) {
 			$values[] = $keys[] = $id = \mt_rand(1, 10000);
 			$st->execute([
@@ -52,7 +59,7 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 			$values[] = $row['randomNumber'] = \mt_rand(1, 10000);
 			$worlds[] = $row;
 		}
-		\Ubiquity\db\Database::getNamedStatement($count)->execute([
+		self::$db->getNamedStatement($count)->execute([
 			...$keys,
 			...$values
 		]);
