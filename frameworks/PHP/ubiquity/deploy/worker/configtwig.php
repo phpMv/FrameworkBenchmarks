@@ -1,7 +1,7 @@
 <?php
 return array(
 	"database" => [
-		'raw' => [
+		'pgsql' => [
 			"wrapper" => "\\Ubiquity\\db\\providers\\pdo\\PDOWrapper",
 			"type" => "pgsql",
 			"dbName" => "hello_world",
@@ -10,8 +10,7 @@ return array(
 			"user" => "benchmarkdbuser", // benchmarkdbuser
 			"password" => "benchmarkdbpass", // benchmarkdbpass
 			"options" => [
-				\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-				\PDO::ATTR_EMULATE_PREPARES => false
+				\PDO::ATTR_PERSISTENT => true
 			],
 			"cache" => false
 		]
