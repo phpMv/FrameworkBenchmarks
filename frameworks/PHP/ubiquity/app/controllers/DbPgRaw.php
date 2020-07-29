@@ -48,6 +48,7 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 				'id' => $id,
 				'randomNumber' => RawDb::$random->fetchColumn()
 			];
+			$world['randomNumber'] = \mt_rand(1, 10000);
 			$worlds[] = $world;
 		}
 		RawDb::update($worlds);
