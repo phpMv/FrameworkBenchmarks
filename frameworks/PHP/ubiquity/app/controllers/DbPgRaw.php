@@ -51,7 +51,7 @@ class DbPgRaw extends \Ubiquity\controllers\Controller {
 		$keys = $values = [];
 		$count = $this->getCount($queries);
 		$st = self::$statement;
-		while ($count --) {
+		for ($i = 0; $i < $count; ++ $i) {
 			$values[] = $keys[] = $id = \mt_rand(1, 10000);
 			$st->execute([
 				$id
