@@ -23,16 +23,14 @@ class RawDb {
 	}
 
 	public static function update(array $worlds) {
-		$count = \count($worlds);
-		self::$updates[$count] ??= self::prepareUpdate($count);
-
 		$values = [];
 		$keys = [];
 		foreach ($worlds as $world) {
 			$values[] = $keys[] = $world['id'];
 			$values[] = $world['randomNumber'];
 		}
-		self::$updates[$count]->execute([
+		$count = \count($worlds);
+		(self::$updates[$count] ?? self::prepareUpdate($count))->execute([
 			...$values,
 			...$keys
 		]);
