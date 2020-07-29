@@ -51,5 +51,7 @@ class RawDb {
 			...self::$values,
 			...self::$keys
 		]);
+		self::$values = [];
+		self::$keys = [];
 	}
 }
