@@ -8,7 +8,7 @@ trait FortunesAsyncTrait {
 	protected static $pDao;
 
 	public static function warmup() {
-		self::$pDao = new DAOPreparedQueryAll(Fortune::class);
+		self::$pDao = new DAOPreparedQueryAll('models\\Fortune');
 	}
 
 	public function initialize() {
