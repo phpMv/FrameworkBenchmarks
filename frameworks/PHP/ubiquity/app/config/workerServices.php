@@ -1,23 +1,24 @@
 <?php
 \Ubiquity\cache\CacheManager::startProd($config);
+
 \Ubiquity\orm\DAO::setModelsDatabases([
-	'models\\Fortune' => 'pgsql',
-	'models\\World' => 'pgsql',
-	'models\\CachedWorld' => 'pgsql-cache'
+	\models\Fortune::class => 'pgsql',
+	\models\World::class => 'pgsql',
+	\models\CachedWorld::class => 'pgsql-cache'
 ]);
 
 \Ubiquity\orm\DAO::setCache(new \Ubiquity\cache\dao\DAOMemoryCache());
 
 echo "Loading worlds\n";
-\Ubiquity\orm\DAO::warmupCache('models\\CachedWorld', '', false);
+\Ubiquity\orm\DAO::warmupCache(\models\CachedWorld::class, '', false);
 echo "End Loading\n";
 
 \Ubiquity\cache\CacheManager::warmUpControllers([
-	'controllers\\Plaintext_',
-	'controllers\\Json_',
-	'controllers\\DbPg',
-	'controllers\\Fortunes_',
-	'controllers\\Cache'
+	\controllers\Plaintext_::class,
+	\controllers\Json_::class,
+	\controllers\DbPg::class,
+	\controllers\Fortunes_::class,
+	\controllers\Cache::class
 ]);
 
 $workerServer->onWorkerStart = function () use ($config) {

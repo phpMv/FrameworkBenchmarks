@@ -2,6 +2,7 @@
 namespace controllers;
 
 use Ubiquity\orm\DAO;
+
 /**
  * Bench controller.
  */
@@ -12,7 +13,7 @@ class DbMy extends DbPg {
 		$queries = \min(\max($queries, 1), 500);
 		$ids = $this->getUniqueRandomNumbers($queries);
 		foreach ($ids as $id) {
-			$world = DAO::executePrepared('world', [
+			$world = self::$pDao->execute([
 				'id' => $id
 			]);
 			$world->randomNumber = \mt_rand(1, 10000);

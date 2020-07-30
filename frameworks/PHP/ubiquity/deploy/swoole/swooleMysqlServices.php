@@ -1,12 +1,12 @@
 <?php
 \Ubiquity\cache\CacheManager::startProd($config);
 \Ubiquity\orm\DAO::setModelsDatabases([
-	'models\\World' => 'default'
+	\models\World::class => 'default'
 ]);
 \Ubiquity\cache\CacheManager::warmUpControllers([
-	'controllers\\DbMy'
+	\controllers\DbMy::class
 ]);
 $swooleServer->on('workerStart', function ($srv) use (&$config) {
 	\Ubiquity\orm\DAO::startDatabase($config, 'default');
-	\Ubiquity\orm\DAO::prepareGetById('world', 'models\\World');
+	\controllers\DbMy::warmup();
 });

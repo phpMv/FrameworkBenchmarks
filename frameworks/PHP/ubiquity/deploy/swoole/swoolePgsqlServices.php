@@ -1,17 +1,17 @@
 <?php
 \Ubiquity\cache\CacheManager::startProd($config);
 \Ubiquity\orm\DAO::setModelsDatabases([
-	'models\\Fortune' => 'pgsql',
-	'models\\World' => 'pgsql'
+	\models\Fortune::class => 'pgsql',
+	\models\World::class => 'pgsql'
 ]);
 \Ubiquity\cache\CacheManager::warmUpControllers([
-	'controllers\\Plaintext_',
-	'controllers\\Json_',
-	'controllers\\DbPg',
-	'controllers\\Fortunes_'
+	\controllers\Plaintext_::class,
+	\controllers\Json_::class,
+	\controllers\DbPg::class,
+	\controllers\Fortunes_::class
 ]);
 $swooleServer->on('workerStart', function ($srv) use (&$config) {
 	\Ubiquity\orm\DAO::startDatabase($config, 'pgsql');
-	\Ubiquity\orm\DAO::prepareGetById('world', 'models\\World');
-	\Ubiquity\orm\DAO::prepareGetAll('fortune', 'models\\Fortune');
+	\controllers\DbPg::warmup();
+	\controllers\Fortunes_::warmup();
 });
