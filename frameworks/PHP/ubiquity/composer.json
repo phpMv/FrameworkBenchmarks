@@ -1,7 +1,7 @@
 {
 	"require" : {
 		"php" : "^7.4",
-		"phpmv/ubiquity" : "dev-dao-async-opt"
+		"phpmv/ubiquity" : "dev-dao-async-opt#59ef070cd1249ac9368695b4921ad7d2de6382ae"
 	},
 	"require-dev" : {
 		"monolog/monolog" : "^1.24",
