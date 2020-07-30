@@ -1,8 +1,8 @@
 <?php
 \Ubiquity\cache\CacheManager::startProd($config);
 \Ubiquity\orm\DAO::setModelsDatabases([
-	\models\Fortune::class => 'pgsql',
-	\models\World::class => 'pgsql'
+	'models\\Fortune' => 'pgsql',
+	'models\\World' => 'pgsql'
 ]);
 \Ubiquity\cache\CacheManager::warmUpControllers([
 	\controllers\Plaintext_::class,

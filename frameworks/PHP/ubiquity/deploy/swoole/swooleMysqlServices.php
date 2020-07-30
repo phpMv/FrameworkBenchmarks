@@ -1,7 +1,7 @@
 <?php
 \Ubiquity\cache\CacheManager::startProd($config);
 \Ubiquity\orm\DAO::setModelsDatabases([
-	\models\World::class => 'default'
+	'models\\World' => 'default'
 ]);
 \Ubiquity\cache\CacheManager::warmUpControllers([
 	\controllers\DbMy::class

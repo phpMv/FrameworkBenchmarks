@@ -2,8 +2,8 @@
 \Ubiquity\cache\CacheManager::startProd($config);
 
 \Ubiquity\orm\DAO::setModelsDatabases([
-	\models\Fortune::class => 'async',
-	\models\World::class => 'async'
+	'models\\Fortune' => 'async',
+	'models\\World' => 'async'
 ]);
 
 \Ubiquity\cache\CacheManager::warmUpControllers([
