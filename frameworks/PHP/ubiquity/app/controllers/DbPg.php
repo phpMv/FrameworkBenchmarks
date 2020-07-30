@@ -21,7 +21,8 @@ class DbPg extends \Ubiquity\controllers\Controller {
 	public function query($queries = 1) {
 		$worlds = [];
 		$count = $this->getCount($queries);
-		for ($i = 0; $i < $count; ++ $i) {
+
+		while ($count --) {
 			$worlds[] = (self::$pDao->execute([
 				'id' => \mt_rand(1, 10000)
 			]))->_rest;
@@ -33,7 +34,7 @@ class DbPg extends \Ubiquity\controllers\Controller {
 		$worlds = [];
 		$count = $this->getCount($queries);
 
-		for ($i = 0; $i < $count; ++ $i) {
+		while ($count --) {
 			$world = self::$pDao->execute([
 				'id' => \mt_rand(1, 10000)
 			]);
