@@ -7,11 +7,11 @@
 ]);
 
 \Ubiquity\cache\CacheManager::warmUpControllers([
-	'controllers\\DbMy',
-	'controllers\\Fortunes_'
+	\controllers\DbMy::class,
+	\controllers\Fortunes_::class
 ]);
 
 \Ubiquity\orm\DAO::startDatabase($config, 'default');
-\Ubiquity\orm\DAO::prepareGetById('world', 'models\\World');
-\Ubiquity\orm\DAO::prepareGetAll('fortune', 'models\\Fortune');
+\controllers\DbMy::warmup();
+\controllers\Fortunes_::warmup();
 

@@ -5,12 +5,12 @@
 	'models\\World' => 'pgsql'
 ]);
 \Ubiquity\cache\CacheManager::warmUpControllers([
-	'controllers\\Plaintext_',
-	'controllers\\Json_',
-	'controllers\\DbPg',
-	'controllers\\Fortunes_'
+	\controllers\Plaintext_::class,
+	\controllers\Json_::class,
+	\controllers\DbPg::class,
+	\controllers\Fortunes_::class
 ]);
 
 \Ubiquity\orm\DAO::startDatabase($config, 'pgsql');
-\Ubiquity\orm\DAO::prepareGetById('world', 'models\\World');
-\Ubiquity\orm\DAO::prepareGetAll('fortune', 'models\\Fortune');
+\controllers\DbPg::warmup();
+\controllers\Fortunes_::warmup();
