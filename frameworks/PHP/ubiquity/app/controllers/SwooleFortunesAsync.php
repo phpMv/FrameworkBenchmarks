@@ -22,7 +22,7 @@ class SwooleFortunesAsync extends \Ubiquity\controllers\SimpleViewAsyncControlle
 		$dbInstance = self::$db->pool();
 		$fortunes = self::$pDao->execute();
 		self::$db->freePool($dbInstance);
-		$fortunes[] = (new Fortune())->setId(0)->setMessage('Additional fortune added at request time.');
+		$fortunes[] = new Fortune(0, 'Additional fortune added at request time.');
 		\usort($fortunes, 'self::compare');
 		$this->loadView('Fortunes/index.php', [
 			'fortunes' => $fortunes
