@@ -15,7 +15,7 @@ class SwooleFortunesAsync extends \Ubiquity\controllers\SimpleViewAsyncControlle
 
 	public static function warmup() {
 		self::asyncWarmup();
-		self::$db = Ubiquity\orm\DAO::getDatabase('async');
+		self::$db = \Ubiquity\orm\DAO::getDatabase('async');
 	}
 
 	public function index() {
