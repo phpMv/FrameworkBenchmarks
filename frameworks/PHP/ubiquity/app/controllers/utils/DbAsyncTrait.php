@@ -18,7 +18,7 @@ trait DbAsyncTrait {
 	}
 
 	public static function warmup() {
-		self::$pDao = new DAOPreparedQueryById(\models\World::class);
+		self::$pDao = new DAOPreparedQueryById('models\\World');
 	}
 }
 
