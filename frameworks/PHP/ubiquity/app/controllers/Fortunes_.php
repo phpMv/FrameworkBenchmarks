@@ -9,7 +9,7 @@ class Fortunes_ extends \Ubiquity\controllers\SimpleViewAsyncController {
 
 	public function index() {
 		$fortunes = self::$pDao->execute();
-		$fortunes[] = new Fortune(0, 'Additional fortune added at request time.');
+		$fortunes[0] = new Fortune(0, 'Additional fortune added at request time.');
 		\usort($fortunes, function ($left, $right) {
 			return $left->message <=> $right->message;
 		});

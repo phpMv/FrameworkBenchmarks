@@ -22,9 +22,7 @@ return array(
 			"port" => 5432,
 			"user" => "benchmarkdbuser", // benchmarkdbuser
 			"password" => "benchmarkdbpass", // benchmarkdbpass
-			"options" => [
-				\PDO::ATTR_PERSISTENT => true
-			],
+			"options" => [],
 			"cache" => false
 		],
 		'pgsql-cache' => [
