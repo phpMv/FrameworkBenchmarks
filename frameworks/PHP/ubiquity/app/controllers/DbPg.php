@@ -20,12 +20,7 @@ class DbPg extends \Ubiquity\controllers\Controller {
 	public function query($queries = 1) {
 		$worlds = [];
 		$count = 1;
-		if ($queries > 1) {
-			if (($count = $queries) > 500) {
-				$count = 500;
-			}
-		}
-
+		($queries >= 1) ?: (($count = $queries) <= 500) ?: $count = 500;
 		while ($count --) {
 			$worlds[] = (self::$pDao->execute([
 				'id' => \mt_rand(1, 10000)
