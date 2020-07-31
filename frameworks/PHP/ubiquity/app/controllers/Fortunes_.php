@@ -2,10 +2,19 @@
 namespace controllers;
 
 use models\Fortune;
-use controllers\utils\FortunesAsyncTrait;
+use Ubiquity\orm\core\prepared\DAOPreparedQueryAll;
 
 class Fortunes_ extends \Ubiquity\controllers\SimpleViewAsyncController {
-	use FortunesAsyncTrait;
+
+	protected static $pDao;
+
+	public static function warmup() {
+		self::$pDao = new DAOPreparedQueryAll('models\\Fortune');
+	}
+
+	public function initialize() {
+		\Ubiquity\utils\http\UResponse::setContentType('text/html', 'utf-8');
+	}
 
 	public function index() {
 		$fortunes = self::$pDao->execute();
