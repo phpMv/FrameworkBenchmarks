@@ -2,13 +2,14 @@
 namespace controllers;
 
 use Ubiquity\orm\DAO;
+use controllers\utils\DbTrait;
 use controllers\utils\DbAsyncTrait;
 
 /**
  * Bench controller.
  */
 class DbPg extends \Ubiquity\controllers\Controller {
-	use DbAsyncTrait;
+	use DbTrait,DbAsyncTrait;
 
 	public function index() {
 		$world = self::$pDao->execute([
@@ -19,8 +20,8 @@ class DbPg extends \Ubiquity\controllers\Controller {
 
 	public function query($queries = 1) {
 		$worlds = [];
-		$count = 1;
-		($queries >= 1) ?: ((($count = $queries) <= 500) ?: $count = 500);
+		$count = $this->getCount($queries);
+
 		while ($count --) {
 			$worlds[] = (self::$pDao->execute([
 				'id' => \mt_rand(1, 10000)
@@ -31,7 +32,7 @@ class DbPg extends \Ubiquity\controllers\Controller {
 
 	public function update($queries = 1) {
 		$worlds = [];
-		$count = \min(\max($queries, 1), 500);
+		$count = $this->getCount($queries);
 
 		while ($count --) {
 			$world = self::$pDao->execute([
