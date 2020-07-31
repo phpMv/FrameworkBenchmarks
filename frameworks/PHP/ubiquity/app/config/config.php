@@ -15,7 +15,7 @@ return array(
 			"cache" => false
 		],
 		'pgsql' => [
-			"wrapper" => "\\Ubiquity\\db\\providers\\pgsql\\PgsqlWrapper",
+			"wrapper" => "\\Ubiquity\\db\\providers\\pdo\\PDOWrapper",
 			"type" => "pgsql",
 			"dbName" => "hello_world",
 			"serverName" => "tfb-database", // tfb-database
