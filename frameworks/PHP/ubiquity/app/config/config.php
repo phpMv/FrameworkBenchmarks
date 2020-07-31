@@ -23,7 +23,7 @@ return array(
 			"user" => "benchmarkdbuser", // benchmarkdbuser
 			"password" => "benchmarkdbpass", // benchmarkdbpass
 			"options" => [
-				\PDO::ATTR_EMULATE_PREPARES => true
+				\PDO::ATTR_PERSISTENT => true
 			],
 			"cache" => false
 		],
