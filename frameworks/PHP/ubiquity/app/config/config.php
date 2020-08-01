@@ -22,10 +22,7 @@ return array(
 			"port" => 5432,
 			"user" => "benchmarkdbuser", // benchmarkdbuser
 			"password" => "benchmarkdbpass", // benchmarkdbpass
-			"options" => [
-				'async' => true,
-				'pool_size' => 30
-			],
+			"options" => [],
 			"cache" => false
 		],
 		'pgsql-cache' => [
