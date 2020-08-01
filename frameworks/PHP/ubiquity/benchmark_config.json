@@ -192,6 +192,27 @@
         "display_name": "ubiquity-roadrunner-mysql",
         "notes": "",
         "versus": "php"
+      },
+      "workerman-mysql": {
+        "db_url": "/DbPg",
+        "query_url": "/DbPg/query/",
+        "fortune_url": "/Fortunes_",
+        "update_url": "/DbMy/update/",
+        "port": 8080,
+        "approach": "Realistic",
+        "classification": "Fullstack",
+        "database": "Mysql",
+        "framework": "Ubiquity",
+        "language": "PHP",
+        "flavor": "PHP7",
+        "orm": "Full",
+        "platform": "workerman",
+        "webserver": "none",
+        "os": "Linux",
+        "database_os": "Linux",
+        "display_name": "ubiquity-workerman-mysql",
+        "notes": "",
+        "versus": "php"
       }
     }
   ]
