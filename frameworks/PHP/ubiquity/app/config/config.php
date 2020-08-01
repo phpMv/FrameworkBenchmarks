@@ -23,7 +23,7 @@ return array(
 			"user" => "benchmarkdbuser", // benchmarkdbuser
 			"password" => "benchmarkdbpass", // benchmarkdbpass
 			"options" => [
-				'connect_type' => \PGSQL_CONNECT_ASYNC | \PGSQL_CONNECT_FORCE_NEW
+				'async' => true
 			],
 			"cache" => false
 		],
