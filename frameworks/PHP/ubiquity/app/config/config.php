@@ -15,14 +15,16 @@ return array(
 			"cache" => false
 		],
 		'pgsql' => [
-			"wrapper" => "\\Ubiquity\\db\\providers\\pdo\\PDOWrapper",
+			"wrapper" => "\\Ubiquity\\db\\providers\\pgsql\\PgsqlWrapper",
 			"type" => "pgsql",
 			"dbName" => "hello_world",
 			"serverName" => "tfb-database", // tfb-database
 			"port" => 5432,
 			"user" => "benchmarkdbuser", // benchmarkdbuser
 			"password" => "benchmarkdbpass", // benchmarkdbpass
-			"options" => [],
+			"options" => [
+				'connect_type' => \PGSQL_CONNECT_ASYNC
+			],
 			"cache" => false
 		],
 		'pgsql-cache' => [
