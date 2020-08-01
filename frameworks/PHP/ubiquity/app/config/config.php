@@ -23,7 +23,8 @@ return array(
 			"user" => "benchmarkdbuser", // benchmarkdbuser
 			"password" => "benchmarkdbpass", // benchmarkdbpass
 			"options" => [
-				'async' => true
+				'async' => true,
+				'pool_size' => 60
 			],
 			"cache" => false
 		],
