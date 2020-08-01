@@ -2,7 +2,7 @@
 	"require" : {
 		"php" : "^7.4",
 		"phpmv/ubiquity" : "dev-dao-async-opt#c9c76510618c59559c8d05287bb70d9a7d664964",
-		"phpmv/ubiquity-pgsql" : "dev-master#85335bb588213dd0f8f99c14bd0304ef39297113"
+		"phpmv/ubiquity-pgsql" : "dev-master#af7bc812d8c8814cfb2d3cb0b1c48da38ef98129"
 	},
 	"require-dev" : {
 		"monolog/monolog" : "^1.24",
