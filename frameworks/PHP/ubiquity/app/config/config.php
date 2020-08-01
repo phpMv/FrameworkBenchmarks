@@ -24,7 +24,7 @@ return array(
 			"password" => "benchmarkdbpass", // benchmarkdbpass
 			"options" => [
 				'async' => true,
-				'pool_size' => 60
+				'pool_size' => 30
 			],
 			"cache" => false
 		],
