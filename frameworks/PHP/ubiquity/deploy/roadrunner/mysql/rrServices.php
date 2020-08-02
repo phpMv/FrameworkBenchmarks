@@ -2,8 +2,8 @@
 \Ubiquity\cache\CacheManager::startProd($config);
 
 \Ubiquity\orm\DAO::setModelsDatabases([
-	'models\\World' => 'default',
-	'models\\Fortune' => 'default'
+	'models\\World' => 'mysql',
+	'models\\Fortune' => 'mysql'
 ]);
 
 \Ubiquity\cache\CacheManager::warmUpControllers([

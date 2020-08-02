@@ -33,7 +33,7 @@ RUN php composer.phar install --optimize-autoloader --classmap-authoritative --n
 
 RUN chmod 777 -R /ubiquity/.ubiquity/*
 
-COPY deploy/worker/workerServices-mysql.php app/config/workerServices.php
+COPY deploy/workerman/mysql/workerServices.php app/config/workerServices.php
 
 RUN echo "opcache.preload=/ubiquity/app/config/preloader.script.php" >> /etc/php/7.4/cli/php.ini
 

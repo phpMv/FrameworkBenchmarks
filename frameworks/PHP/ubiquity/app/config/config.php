@@ -1,7 +1,7 @@
 <?php
 return array(
 	"database" => [
-		'default' => [
+		'mysql' => [
 			"wrapper" => "\\Ubiquity\\db\\providers\\pdo\\PDOWrapper",
 			"type" => "mysql",
 			"dbName" => "hello_world",
@@ -35,9 +35,7 @@ return array(
 			"port" => 5432,
 			"user" => "benchmarkdbuser", // benchmarkdbuser
 			"password" => "benchmarkdbpass", // benchmarkdbpass
-			"options" => [
-				\PDO::ATTR_PERSISTENT => false
-			],
+			"options" => [],
 			"cache" => false
 		],
 		'async' => [

@@ -1,18 +1,15 @@
 <?php
 return array(
 	"database" => [
-		'raw' => [
+		'default' => [
 			"wrapper" => "\\Ubiquity\\db\\providers\\pdo\\PDOWrapper",
-			"type" => "pgsql",
+			"type" => "mysql",
 			"dbName" => "hello_world",
 			"serverName" => "tfb-database", // tfb-database
-			"port" => 5432,
+			"port" => 3306,
 			"user" => "benchmarkdbuser", // benchmarkdbuser
 			"password" => "benchmarkdbpass", // benchmarkdbpass
-			"options" => [
-				\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-				\PDO::ATTR_EMULATE_PREPARES => false
-			],
+			"options" => [],
 			"cache" => false
 		]
 	],

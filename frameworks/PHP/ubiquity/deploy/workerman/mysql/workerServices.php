@@ -2,8 +2,8 @@
 \Ubiquity\cache\CacheManager::startProd($config);
 
 \Ubiquity\orm\DAO::setModelsDatabases([
-	'models\\Fortune' => 'default',
-	'models\\World' => 'default'
+	'models\\Fortune' => 'mysql',
+	'models\\World' => 'mysql'
 ]);
 
 \Ubiquity\cache\CacheManager::warmUpControllers([
@@ -13,7 +13,7 @@
 ]);
 
 $workerServer->onWorkerStart = function () use ($config) {
-	\Ubiquity\orm\DAO::startDatabase($config, 'default');
+	\Ubiquity\orm\DAO::startDatabase($config, 'mysql');
 	\controllers\DbPg::warmup();
 	\controllers\DbMy::warmup();
 	\controllers\Fortunes_::warmup();

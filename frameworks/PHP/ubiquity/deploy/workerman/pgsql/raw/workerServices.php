@@ -7,7 +7,7 @@
 ]);
 
 $workerServer->onWorkerStart = function () use ($config) {
-	$db = \Ubiquity\db\Database::start('raw', $config);
+	$db = \Ubiquity\db\Database::start('pgsql', $config);
 	\controllers\DbPgRaw::warmup($db);
 	\controllers\FortunesRaw::warmup($db);
 };

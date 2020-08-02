@@ -32,6 +32,6 @@ RUN chmod 777 -R /ubiquity/.ubiquity/*
 
 USER www-data
 
-COPY deploy/swoole/swooleMysqlAsyncServices.php app/config/swooleServices.php
+COPY deploy/swoole/mysql/async/swooleServices.php app/config/swooleServices.php
 
 CMD /ubiquity/vendor/bin/Ubiquity serve -t=swoole -p=8080 -h=0.0.0.0

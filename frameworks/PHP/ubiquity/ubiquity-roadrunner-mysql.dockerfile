@@ -39,6 +39,6 @@ RUN chmod 777 -R /ubiquity/.ubiquity/*
 
 #RUN echo "opcache.preload=/ubiquity/app/config/preloader.script.php" >> /etc/php/7.4/cgi/php.ini
 
-COPY deploy/roadrunner/rrMysqlServices.php app/config/rrServices.php
+COPY deploy/roadrunner/mysql/rrServices.php app/config/rrServices.php
 
 CMD envwrapper.sh /ubiquity/rr serve
