@@ -7,9 +7,9 @@
 ]);
 
 \Ubiquity\cache\CacheManager::warmUpControllers([
+	\controllers\Db_::class,
 	\controllers\DbMy::class,
-	\controllers\Fortunes_::class,
-	\controllers\Db_::class
+	\controllers\Fortunes_::class
 ]);
 
 $workerServer->onWorkerStart = function () use ($config) {
