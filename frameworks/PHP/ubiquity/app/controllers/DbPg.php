@@ -12,10 +12,9 @@ class DbPg extends \Ubiquity\controllers\Controller {
 	use DbTrait,DbAsyncTrait;
 
 	public function index() {
-		$world = self::$pDao->execute([
+		echo \json_encode(self::$pDao->execute([
 			'id' => \mt_rand(1, 10000)
-		]);
-		echo \json_encode($world->_rest);
+		])->_rest);
 	}
 
 	public function query($queries = 1) {
