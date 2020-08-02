@@ -112,8 +112,8 @@
         "versus": "swoole"
       },
       "swoole-mysql": {
-        "db_url": "/DbMy",
-        "query_url": "/DbMy/query/",
+        "db_url": "/Db_",
+        "query_url": "/Db_/query/",
         "fortune_url": "/Fortunes_",
         "update_url": "/DbMy/update/",
         "port": 8080,
