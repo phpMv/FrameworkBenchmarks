@@ -9,7 +9,9 @@ return array(
 			"port" => 3306,
 			"user" => "benchmarkdbuser", // benchmarkdbuser
 			"password" => "benchmarkdbpass", // benchmarkdbpass
-			"options" => [],
+			"options" => [
+				\PDO::ATTR_PERSISTENT => true
+			],
 			"cache" => false
 		]
 	],
