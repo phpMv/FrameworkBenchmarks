@@ -11,7 +11,7 @@
 	\controllers\Fortunes_::class
 ]);
 
-\Ubiquity\orm\DAO::startDatabase($config, 'default');
+\Ubiquity\orm\DAO::startDatabase($config, 'mysql');
 \controllers\DbMy::warmup();
 \controllers\Fortunes_::warmup();
 
