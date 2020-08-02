@@ -15,14 +15,14 @@ echo "End Loading\n";
 \Ubiquity\cache\CacheManager::warmUpControllers([
 	\controllers\Plaintext_::class,
 	\controllers\Json_::class,
-	\controllers\DbPg::class,
+	\controllers\Db_::class,
 	\controllers\Fortunes_::class,
 	\controllers\Cache::class
 ]);
 
 $workerServer->onWorkerStart = function () use ($config) {
 	\Ubiquity\orm\DAO::startDatabase($config, 'pgsql');
-	\controllers\DbPg::warmup();
+	\controllers\Db_::warmup();
 	\controllers\Fortunes_::warmup();
 };
 

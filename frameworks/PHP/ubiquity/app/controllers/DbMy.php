@@ -6,7 +6,7 @@ use Ubiquity\orm\DAO;
 /**
  * Bench controller.
  */
-class DbMy extends DbPg {
+class DbMy extends Db_ {
 
 	public function update($queries = 1) {
 		$worlds = [];

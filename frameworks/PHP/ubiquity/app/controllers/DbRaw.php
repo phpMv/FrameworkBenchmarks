@@ -6,7 +6,7 @@ use controllers\utils\DbTrait;
 /**
  * Bench controller.
  */
-class DbPgRaw extends \Ubiquity\controllers\Controller {
+class DbRaw extends \Ubiquity\controllers\Controller {
 	use DbTrait;
 
 	protected static $statement;

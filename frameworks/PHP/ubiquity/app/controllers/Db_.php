@@ -8,7 +8,7 @@ use controllers\utils\DbAsyncTrait;
 /**
  * Bench controller.
  */
-class DbPg extends \Ubiquity\controllers\Controller {
+class Db_ extends \Ubiquity\controllers\Controller {
 	use DbTrait,DbAsyncTrait;
 
 	public function index() {
