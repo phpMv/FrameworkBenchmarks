@@ -14,8 +14,7 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 	public function __construct() {}
 
 	public function initialize() {
-		\header('Content-Type: application/json');
-		\Ubiquity\cache\CacheManager::startProdFromCtrl();
+		\Ubiquity\utils\http\UResponse::setContentType('application/json');
 	}
 
 	public function index() {
