@@ -39,16 +39,17 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 
 		$count = $this->getCount($queries);
 		$ids = $this->getUniqueRandomNumbers($count);
+		$bId = DAONosql::startBulk(World::class);
 		foreach ($ids as $id) {
 			$world = DAONosql::getById(World::class, [
 				'id' => $id
 			]);
 
 			$world->randomNumber = \mt_rand(1, 10000);
-			DAONosql::toUpdate($world);
+			DAONosql::toUpdate($bId, $world);
 			$worlds[] = $world->_rest;
 		}
-		DAONosql::flushUpdates(World::class);
+		DAONosql::flush($bId);
 		echo \json_encode($worlds);
 	}
 
