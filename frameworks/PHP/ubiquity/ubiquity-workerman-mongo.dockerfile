@@ -16,6 +16,7 @@ RUN printf "\n\n /usr/lib/x86_64-linux-gnu/\n\n\nno\n\n\n" | pecl install event 
 COPY deploy/conf/php-async.ini /etc/php/7.4/cli/php.ini
 
 ADD ./ /ubiquity
+
 WORKDIR /ubiquity
 
 RUN chmod -R 777 /ubiquity
