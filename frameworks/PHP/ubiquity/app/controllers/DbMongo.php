@@ -44,10 +44,10 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 			]);
 
 			$world->randomNumber = \mt_rand(1, 10000);
-			DAONosql::update($world);
+			DAONosql::toUpdate($world);
 			$worlds[] = $world->_rest;
 		}
-		// DAONosql::flushUpdates(World::class);
+		DAONosql::flushUpdates(World::class);
 		echo \json_encode($worlds);
 	}
 }
