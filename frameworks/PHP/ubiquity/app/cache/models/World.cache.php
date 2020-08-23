@@ -7,7 +7,7 @@ return array(
 	"#manyToOne" => array(),
 	"#fieldNames" => array(
 		"id" => "id",
-		"randomNumber" => "randomnumber"
+		"randomNumber" => "randomNumber"
 	),
 	"#fieldTypes" => array(
 		"id" => "int(11)",
