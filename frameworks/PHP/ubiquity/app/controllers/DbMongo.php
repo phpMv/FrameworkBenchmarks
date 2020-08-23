@@ -20,7 +20,7 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 	public function index() {
 		echo \json_encode((DAONosql::getById(World::class, [
 			'id' => \mt_rand(1, 10000)
-		], false))->_rest);
+		]))->_rest);
 	}
 
 	public function query($queries = 1) {
