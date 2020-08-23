@@ -42,7 +42,6 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 			$world = DAONosql::getById(World::class, [
 				'id' => \mt_rand(1, 10000)
 			]);
-
 			$world->randomNumber = \mt_rand(1, 10000);
 			DAONosql::toUpdate($world);
 			$worlds[] = $world->_rest;
