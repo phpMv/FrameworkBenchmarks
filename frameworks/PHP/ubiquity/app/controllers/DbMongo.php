@@ -38,9 +38,10 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 		$worlds = [];
 
 		$count = $this->getCount($queries);
-		for ($i = 0; $i < $count; ++ $i) {
+		$ids = $this->getUniqueRandomNumbers($count);
+		foreach ($ids as $id) {
 			$world = DAONosql::getById(World::class, [
-				'id' => \mt_rand(1, 10000)
+				'id' => $id
 			]);
 
 			$world->randomNumber = \mt_rand(1, 10000);
@@ -49,5 +50,16 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 		}
 		DAONosql::flushUpdates(World::class);
 		echo \json_encode($worlds);
+	}
+
+	private function getUniqueRandomNumbers($count) {
+		$res = [];
+		do {
+			$res[\mt_rand(1, 10000)] = 1;
+		} while (\count($res) < $count);
+
+		\ksort($res);
+
+		return \array_keys($res);
 	}
 }
