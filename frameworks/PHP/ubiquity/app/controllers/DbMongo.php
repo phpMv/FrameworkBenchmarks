@@ -40,6 +40,7 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 		$count = $this->getCount($queries);
 		$ids = $this->getUniqueRandomNumbers($count);
 		$bId = DAONosql::startBulk(World::class);
+
 		foreach ($ids as $id) {
 			$world = DAONosql::getById(World::class, [
 				'id' => $id
@@ -50,6 +51,7 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 			$worlds[] = $world->_rest;
 		}
 		DAONosql::flush($bId);
+
 		echo \json_encode($worlds);
 	}
 
