@@ -29,7 +29,7 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 		for ($i = 0; $i < $count; ++ $i) {
 			$worlds[] = (DAONosql::getById(World::class, [
 				'id' => \mt_rand(1, 10000)
-			], false))->_rest;
+			]))->_rest;
 		}
 		echo \json_encode($worlds);
 	}
