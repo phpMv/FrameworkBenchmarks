@@ -10,6 +10,7 @@ use controllers\utils\DbAsyncTrait;
  * Bench controller.
  */
 class DbMongo extends \Ubiquity\controllers\Controller {
+
 	use DbTrait,DbAsyncTrait;
 
 	public function index() {
