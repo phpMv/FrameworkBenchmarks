@@ -9,6 +9,10 @@ return array(
 		"id" => "id",
 		"randomNumber" => "randomNumber"
 	),
+	"#memberNames" => array(
+		"id" => "id",
+		"randomNumber" => "randomNumber"
+	),
 	"#fieldTypes" => array(
 		"id" => "int(11)",
 		"randomNumber" => "int(11)"

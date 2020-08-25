@@ -13,7 +13,7 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 	use DbTrait,DbAsyncTrait;
 
 	public function index() {
-		echo \json_encode(($this->pDao->execute([
+		echo \json_encode((self::$pDao->execute([
 			'id' => \mt_rand(1, 10000)
 		]))->_rest);
 	}
@@ -24,7 +24,7 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 		$count = $this->getCount($queries);
 
 		for ($i = 0; $i < $count; ++ $i) {
-			$worlds[] = ($this->pDao->execute([
+			$worlds[] = (self::$pDao->execute([
 				'id' => \mt_rand(1, 10000)
 			]))->_rest;
 		}
@@ -38,7 +38,7 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 		$ids = $this->getUniqueRandomNumbers($count);
 		$bId = DAONosql::startBulk(World::class);
 		foreach ($ids as $id) {
-			$world = $this->pDao->execute([
+			$world = self::$pDao->execute([
 				'id' => $id
 			]);
 			do {
