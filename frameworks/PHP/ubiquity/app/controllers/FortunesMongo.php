@@ -1,17 +1,14 @@
 <?php
 namespace controllers;
 
-use Ubiquity\orm\DAONosql;
 use models\Fortune;
+use controllers\utils\FortunesAsyncTrait;
 
 class FortunesMongo extends \Ubiquity\controllers\SimpleViewController {
-
-	public function initialize() {
-		\Ubiquity\cache\CacheManager::startProdFromCtrl();
-	}
+	use FortunesAsyncTrait;
 
 	public function index() {
-		$fortunes = DAONosql::getAll(Fortune::class);
+		$fortunes = self::$pDao->execute();
 		$fortunes[] = new Fortune(0, 'Additional fortune added at request time.');
 		\usort($fortunes, function ($left, $right) {
 			return $left->message <=> $right->message;
