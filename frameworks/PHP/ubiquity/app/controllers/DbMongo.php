@@ -50,7 +50,7 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 			DAONosql::toUpdate($world, $bId);
 			$worlds[] = $world->_rest;
 		}
-		DAONosql::flush($bId);
+		DAONosql::flush($bId, true);
 
 		echo \json_encode($worlds);
 	}
