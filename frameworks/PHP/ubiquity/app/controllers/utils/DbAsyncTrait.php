@@ -7,7 +7,7 @@ trait DbAsyncTrait {
 
 	/**
 	 *
-	 * @var DAOPreparedQueryById
+	 * @var DAONosqlPreparedQueryById
 	 */
 	protected static $pDao;
 
