@@ -11,6 +11,7 @@ RUN apt-get update -yqq > /dev/null && \
 RUN apt-get install -yqq composer > /dev/null
 
 RUN apt-get install -y php-pear php-dev libevent-dev > /dev/null
+
 RUN printf "\n\n /usr/lib/x86_64-linux-gnu/\n\n\nno\n\n\n" | pecl install event > /dev/null && echo "extension=event.so" > /etc/php/7.4/cli/conf.d/event.ini
 
 COPY deploy/conf/php-async.ini /etc/php/7.4/cli/php.ini
@@ -29,6 +30,7 @@ RUN apt-get update -yqq > /dev/null && \
     apt-get install -yqq git unzip > /dev/null
 
 RUN php composer.phar require phpmv/ubiquity-devtools:dev-master phpmv/ubiquity-workerman:dev-master phpmv/ubiquity-nosql:dev-master
+
 RUN php composer.phar install --optimize-autoloader --classmap-authoritative --no-dev
 
 RUN chmod 777 -R /ubiquity/.ubiquity/*
