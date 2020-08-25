@@ -1,7 +1,7 @@
 <?php
 namespace controllers\utils;
 
-use Ubiquity\orm\core\prepared\DAOPreparedQueryById;
+use Ubiquity\orm\core\prepared\DAONosqlPreparedQueryById;
 
 trait DbAsyncTrait {
 
@@ -18,7 +18,7 @@ trait DbAsyncTrait {
 	}
 
 	public static function warmup() {
-		self::$pDao = new DAOPreparedQueryById('models\\World');
+		self::$pDao = new DAONosqlPreparedQueryById('models\\World');
 	}
 }
 

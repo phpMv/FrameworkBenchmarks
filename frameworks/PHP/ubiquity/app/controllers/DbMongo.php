@@ -4,21 +4,16 @@ namespace controllers;
 use Ubiquity\orm\DAONosql;
 use models\World;
 use controllers\utils\DbTrait;
+use controllers\utils\DbAsyncTrait;
 
 /**
  * Bench controller.
  */
 class DbMongo extends \Ubiquity\controllers\Controller {
-	use DbTrait;
-
-	public function __construct() {}
-
-	public function initialize() {
-		\Ubiquity\utils\http\UResponse::setContentType('application/json');
-	}
+	use DbTrait,DbAsyncTrait;
 
 	public function index() {
-		echo \json_encode((DAONosql::getById(World::class, [
+		echo \json_encode(($this->pDao->execute([
 			'id' => \mt_rand(1, 10000)
 		]))->_rest);
 	}
@@ -29,7 +24,7 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 		$count = $this->getCount($queries);
 
 		for ($i = 0; $i < $count; ++ $i) {
-			$worlds[] = (DAONosql::getById(World::class, [
+			$worlds[] = ($this->pDao->execute([
 				'id' => \mt_rand(1, 10000)
 			]))->_rest;
 		}
@@ -43,7 +38,7 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 		$ids = $this->getUniqueRandomNumbers($count);
 		$bId = DAONosql::startBulk(World::class);
 		foreach ($ids as $id) {
-			$world = DAONosql::getById(World::class, [
+			$world = $this->pDao->execute([
 				'id' => $id
 			]);
 			do {
