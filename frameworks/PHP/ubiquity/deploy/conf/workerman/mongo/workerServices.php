@@ -13,5 +13,6 @@
 $workerServer->onWorkerStart = function () use ($config) {
 	\Ubiquity\orm\DAONosql::startDatabase($config, 'mongo');
 	\controllers\DbMongo::warmup();
+	\controllers\FortunesMongo::warmup();
 };
 
