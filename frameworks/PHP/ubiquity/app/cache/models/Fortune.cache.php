@@ -9,6 +9,10 @@ return array(
 		"id" => "id",
 		"message" => "message"
 	),
+	"#memberNames" => array(
+		"id" => "id",
+		"message" => "message"
+	),
 	"#fieldTypes" => array(
 		"id" => "int(11)",
 		"message" => "varchar(100)"
