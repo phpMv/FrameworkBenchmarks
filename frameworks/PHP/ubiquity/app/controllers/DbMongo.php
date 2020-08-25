@@ -25,6 +25,7 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 
 	public function query($queries = 1) {
 		$worlds = [];
+
 		$count = $this->getCount($queries);
 
 		for ($i = 0; $i < $count; ++ $i) {
