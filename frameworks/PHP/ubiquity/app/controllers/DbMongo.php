@@ -26,11 +26,13 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 	public function query($queries = 1) {
 		$worlds = [];
 		$count = $this->getCount($queries);
+
 		for ($i = 0; $i < $count; ++ $i) {
 			$worlds[] = (DAONosql::getById(World::class, [
 				'id' => \mt_rand(1, 10000)
 			]))->_rest;
 		}
+
 		echo \json_encode($worlds);
 	}
 
