@@ -30,7 +30,8 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 			], [
 				'projection' => [
 					'id' => 1,
-					'randomNumber' => 1
+					'randomNumber' => 1,
+					'_id' => 0
 				]
 			]))->_rest;
 		}
