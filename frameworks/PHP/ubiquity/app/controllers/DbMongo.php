@@ -36,9 +36,10 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 	public function update($queries = 1) {
 		$worlds = [];
 		$count = $this->getCount($queries);
-		while ($count --) {
+		$ids = $this->getUniqueRandomNumbers($count);
+		foreach ($ids as $id) {
 			$world = self::$pDao->execute([
-				'id' => \mt_rand(1, 10000)
+				'id' => $id
 			]);
 			do {
 				$nRn = \mt_rand(1, 10000);
@@ -50,5 +51,16 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 		DAONosql::flush(World::class, false);
 
 		echo \json_encode($worlds);
+	}
+
+	private function getUniqueRandomNumbers($count) {
+		$res = [];
+		do {
+			$res[\mt_rand(1, 10000)] = 1;
+		} while (\count($res) < $count);
+
+		\ksort($res);
+
+		return \array_keys($res);
 	}
 }
