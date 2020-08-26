@@ -27,6 +27,8 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 		for ($i = 0; $i < $count; ++ $i) {
 			$worlds[] = (self::$pDao->execute([
 				'id' => \mt_rand(1, 10000)
+			], [
+				'hint' => 'id'
 			]))->_rest;
 		}
 
