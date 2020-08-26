@@ -36,11 +36,11 @@ class DbMongo extends \Ubiquity\controllers\Controller {
 	public function update($queries = 1) {
 		$worlds = [];
 		$count = $this->getCount($queries);
-		// $ids = $this->getUniqueRandomNumbers($count);
+		$ids = $this->getUniqueRandomNumbers($count);
 		$bId = DAONosql::startBulk(World::class);
-		while ($count --) {
+		foreach ($ids as $id) {
 			$world = self::$pDao->execute([
-				'id' => \mt_rand(1, 10000)
+				'id' => $id
 			]);
 			do {
 				$nRn = \mt_rand(1, 10000);
