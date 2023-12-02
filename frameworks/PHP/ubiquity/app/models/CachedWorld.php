@@ -1,10 +1,12 @@
 <?php
 namespace models;
 
+use AllowDynamicProperties;
+
 /**
  * @table("World")
  */
-#[AllowDynamicProperties]
+#[\AllowDynamicProperties()]
 class CachedWorld extends World{
 }
 

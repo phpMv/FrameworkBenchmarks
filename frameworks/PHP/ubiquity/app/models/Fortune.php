@@ -1,7 +1,8 @@
 <?php
 namespace models;
 
-#[AllowDynamicProperties]
+
+#[\AllowDynamicProperties()]
 class Fortune {
 
 	/**
