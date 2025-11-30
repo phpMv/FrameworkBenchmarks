@@ -50,7 +50,7 @@ The tests are separated into controllers:
 ## Important Libraries
 The tests were run with:
 * [Ubiquity 2.4.*](https://ubiquity.kobject.net/)
-* [PHP Version 8.0.*](http://www.php.net/) with FPM
+* [PHP Version 8.5.*](http://www.php.net/) with FPM
 * [nginx](http://nginx.org/)
 * [Swoole](https://www.swoole.com/), [Ubiquity-swoole](https://github.com/phpMv/ubiquity-swoole)
 * [Workerman](https://github.com/walkor/Workerman), [Ubiquity-workerman](https://github.com/phpMv/ubiquity-workerman)
